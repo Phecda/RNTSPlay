@@ -1,0 +1,3 @@
+rootProject.name = 'RNTSPlay'
+
+include ':app'
