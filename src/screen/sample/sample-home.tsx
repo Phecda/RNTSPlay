@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
 } from 'react-navigation';
+import { ActionCell } from '../../component/table-cell';
 
 interface Prop {}
 
@@ -29,9 +30,18 @@ export default class SampleHome extends React.Component<
 
   render() {
     return (
-      <View>
-        <Text>example</Text>
-      </View>
+      <FlatList
+        data={[
+          {
+            title: '样例',
+            detailText: '详细文本',
+          },
+        ]}
+        keyExtractor={(_, index) => `${index}`}
+        renderItem={({ item }) => {
+          return <ActionCell {...item} />;
+        }}
+      />
     );
   }
 }
