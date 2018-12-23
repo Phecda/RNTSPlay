@@ -6,13 +6,13 @@ import {
   Image,
   Text,
 } from 'react-native';
-import { ActionCellProps } from './types';
+import { ActionDualCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
 
 export default ({
   icon,
-  iconSize = STYLE_SIZE.ICON_S,
+  iconSize = STYLE_SIZE.ICON_M,
   roundIcon,
   title,
   detailText,
@@ -20,7 +20,8 @@ export default ({
   onPress,
   disabled,
   forceHideRightAngle,
-}: ActionCellProps) => {
+  dualText,
+}: ActionDualCellProps) => {
   const rightAngleVisible = !forceHideRightAngle && onPress;
   return (
     <TouchableHighlight
@@ -29,7 +30,7 @@ export default ({
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
     >
-      <View style={tableCellStyles.container}>
+      <View style={[tableCellStyles.container, tableCellStyles.dualContainer]}>
         {!!icon && (
           <Image
             source={icon}
@@ -41,11 +42,16 @@ export default ({
             }}
           />
         )}
-        {!!title && (
-          <Text style={tableCellStyles.title} numberOfLines={1}>
-            {title}
-          </Text>
-        )}
+        <View style={tableCellStyles.dualTitleContainer}>
+          {!!title && (
+            <Text style={tableCellStyles.title} numberOfLines={1}>
+              {title}
+            </Text>
+          )}
+          {!!dualText && (
+            <Text style={tableCellStyles.dualText}>{dualText}</Text>
+          )}
+        </View>
         {detailText ? (
           <Text style={tableCellStyles.detailText} numberOfLines={1}>
             {detailText}
