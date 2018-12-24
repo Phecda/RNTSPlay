@@ -35,8 +35,8 @@ interface State {
 type Order = 'hot' | 'new';
 
 const options = [
-  { key: 'hot', value: '按热度' },
-  { key: 'new', value: '按时间' },
+  { key: 'hot', value: '最热门' },
+  { key: 'new', value: '最新' },
 ];
 
 @withMappedNavigationAndConfigProps()
@@ -134,7 +134,6 @@ export default class WPPapersInCategory extends React.Component<
 
   render() {
     const { refreshing, wallpapers, image } = this.state;
-    const images = image ? [{ url: image.img, originUrl: image.preview }] : [];
     const { width } = Dimensions.get('window');
     const imgSize = width / 3;
     return (
@@ -144,7 +143,8 @@ export default class WPPapersInCategory extends React.Component<
           onRequestClose={() => {
             this.setState({ image: null });
           }}
-          images={images}
+          image={image}
+          animationType="fade"
         />
         <FlatList
           numColumns={3}

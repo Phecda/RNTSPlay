@@ -3,6 +3,7 @@ declare interface WallPaperProps {
   id: string;
   img: string;
   preview: string;
+  rule: string;
 }
 
 declare interface WallPaperCategoryProps {
