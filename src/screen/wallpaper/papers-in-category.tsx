@@ -18,7 +18,7 @@ import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mappe
 import { WallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
 import ImageViewerModal from './image-viewer-modal';
-import showActionSheet from '../../utility/show-action-sheet';
+import { showActionSheet } from '../../utility/pop-view';
 
 interface Prop {
   category?: WallPaperCategoryProps;

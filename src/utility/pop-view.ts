@@ -9,7 +9,7 @@ type ActionSheetConfig = {
   onSelect: (index: number) => void;
   selectedIndex?: number;
 };
-export default function showActionSheet({
+export function showActionSheet({
   options,
   title,
   message,
