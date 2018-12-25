@@ -16,6 +16,7 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import { STYLE_COLOR, FrameConstants } from '../../variable';
 import { showActionSheet } from '../../utility/pop-view';
 import { saveRemoteImage } from '../../utility/image-utils';
+import Toast from '../../component/toast';
 
 interface ModalImageInfo {
   url: string;
@@ -57,8 +58,10 @@ export default class ImageViewerModal extends React.Component<
     prevProps: ImageViewerModalProps,
     prevState: ImageViewerModalState
   ) {
+    if (prevProps.visible !== this.props.visible) {
+      this._toggleTopBar(true);
+    }
     if (!prevProps.visible && this.props.visible) {
-      this.setState({ barVisible: true });
       this._getOriginSize();
     }
   }
@@ -80,28 +83,25 @@ export default class ImageViewerModal extends React.Component<
 
   _showSave = () => {
     const { image } = this.props;
-    const { originHeight, originWidth } = this.state;
-    if (originHeight === S_Height && originWidth === S_Width) {
-      Alert.alert('已保存');
-      return;
-    }
-    const options = [`屏幕尺寸：${S_Width} * ${S_Height}`];
-    if (originHeight && originWidth) {
-      options.push(`原始尺寸：${originWidth} * ${originHeight}`);
-    }
-    showActionSheet({
-      options,
-      onSelect: index => {
-        console.log(index);
-        saveRemoteImage(image!.preview)
-          .then(some => {
-            console.log(some);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      },
+    if (!image) return;
+    saveRemoteImage(image.preview)
+      .then(some => {
+        Toast.showBottom('保存成功');
+      })
+      .catch(err => {
+        console.log(err);
+        Toast.showBottom(`保存失败，${err.message}`);
+      });
+  };
+
+  _toggleTopBar = (willVisible?: boolean) => {
+    const { barVisible } = this.state;
+    const willTopBarVisible =
+      willVisible !== undefined ? willVisible : !barVisible;
+    this.setState({
+      barVisible: willTopBarVisible,
     });
+    StatusBar.setHidden(!willTopBarVisible, 'fade');
   };
 
   render() {
@@ -109,21 +109,17 @@ export default class ImageViewerModal extends React.Component<
     const { barVisible } = this.state;
     let url = '';
     if (image) {
-      url =
-        image.preview +
-        image.rule
-          .replace(/\$<Width>/g, `${S_Width}`)
-          .replace(/\$<Height>/g, `${S_Height}`);
+      url = image.preview;
     }
     return (
       <Modal transparent {...this.props}>
         <ImageViewer
-          imageUrls={[{ url, height: S_Height, width: S_Width }]}
+          imageUrls={[{ url }]}
           onCancel={onRequestClose}
           enableSwipeDown
           saveToLocalByLongPress={false}
           onClick={() => {
-            this.setState({ barVisible: !barVisible });
+            this._toggleTopBar();
           }}
           renderIndicator={() => <View />}
           renderHeader={currentIndex => (
