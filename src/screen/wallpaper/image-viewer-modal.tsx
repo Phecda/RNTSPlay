@@ -15,6 +15,7 @@ import {
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { STYLE_COLOR, FrameConstants } from '../../variable';
 import { showActionSheet } from '../../utility/pop-view';
+import { saveRemoteImage } from '../../utility/image-utils';
 
 interface ModalImageInfo {
   url: string;
@@ -92,6 +93,13 @@ export default class ImageViewerModal extends React.Component<
       options,
       onSelect: index => {
         console.log(index);
+        saveRemoteImage(image!.preview)
+          .then(some => {
+            console.log(some);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       },
     });
   };
