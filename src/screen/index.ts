@@ -19,7 +19,9 @@ const MainStack = createStackNavigator(
     [ScreenID.Sample_Home]: SampleHome,
     [ScreenID.Wallpaper_Papers]: WPPapersInCategory,
   },
-  {}
+  {
+    headerTransitionPreset: 'uikit',
+  }
 );
 
 const RootSwitchNavigator = createSwitchNavigator({

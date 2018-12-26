@@ -17,7 +17,6 @@ export function showActionSheet({
   onSelect,
   selectedIndex,
 }: ActionSheetConfig) {
-  console.log(Platform.OS);
   if (Platform.OS === 'ios') {
     ActionSheetIOS.showActionSheetWithOptions(
       {
