@@ -19,6 +19,7 @@ import { WallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
 import ImageViewerModal from './image-viewer-modal';
 import { showActionSheet } from '../../utility/pop-view';
+import { ScreenID } from '../../variable';
 
 interface Prop {
   category?: WallPaperCategoryProps;
@@ -138,14 +139,6 @@ export default class WPPapersInCategory extends React.Component<
     const imgSize = width / 3;
     return (
       <View style={commonStyles.container}>
-        <ImageViewerModal
-          visible={!!image}
-          onRequestClose={() => {
-            this.setState({ image: null });
-          }}
-          image={image}
-          animationType="fade"
-        />
         <FlatList
           numColumns={3}
           refreshing={refreshing}
@@ -158,7 +151,9 @@ export default class WPPapersInCategory extends React.Component<
               <TouchableOpacity
                 style={{ width: imgSize, height: imgSize }}
                 onPress={() => {
-                  this.setState({ image: item });
+                  this.props.navigation.navigate(ScreenID.Wallpaper_Detail, {
+                    image: item,
+                  });
                 }}
               >
                 <Image

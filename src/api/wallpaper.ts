@@ -51,3 +51,22 @@ export function fetchWallpapersInCategory(
       return JSON.parse(text);
     });
 }
+
+export function fetchCommentOfWallpaper(wallpaperID: string) {
+  return fetch(
+    `http://service.picasso.adesk.com/v2/vertical/vertical/${wallpaperID}/comment`,
+    {
+      method: 'GET',
+    }
+  )
+    .then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        return Promise.reject();
+      }
+    })
+    .then(text => {
+      return JSON.parse(text);
+    });
+}
