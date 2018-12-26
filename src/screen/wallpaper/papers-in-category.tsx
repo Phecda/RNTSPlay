@@ -149,7 +149,8 @@ export default class WPPapersInCategory extends React.Component<
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                style={{ width: imgSize, height: imgSize }}
+                style={{ width: imgSize, height: imgSize * 1.5 }}
+                activeOpacity={0.7}
                 onPress={() => {
                   this.props.navigation.navigate(ScreenID.Wallpaper_Detail, {
                     image: item,
@@ -157,7 +158,7 @@ export default class WPPapersInCategory extends React.Component<
                 }}
               >
                 <Image
-                  style={{ width: imgSize, height: imgSize }}
+                  style={{ width: imgSize, height: imgSize * 1.5 }}
                   source={{ uri: item.thumb }}
                 />
               </TouchableOpacity>

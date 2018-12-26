@@ -36,7 +36,7 @@ const tableCellStyles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
   },
   seperatorLine: {
-    backgroundColor: STYLE_COLOR.SEPERATOR_LIGHT,
+    backgroundColor: STYLE_COLOR.SEPERATOR_HEAVY,
     flex: 1,
   },
 });

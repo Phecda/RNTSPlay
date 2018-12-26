@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { WallpaperAPI } from '../../api';
-import { ScreenID } from '../../variable';
+import { ScreenID, STYLE_SIZE, STYLE_COLOR } from '../../variable';
+import commonStyles from '../../variable/styles';
 
 interface Prop {}
 
@@ -77,10 +78,14 @@ export default class WPCategory extends React.Component<
   render() {
     const { categories, loading } = this.state;
     const { width } = Dimensions.get('window');
-    const imgSize = width / 3;
+    const cellWidth = width / 3;
+
+    const imgSize = cellWidth - STYLE_SIZE.SPACING_HALF * 2;
+    console.log(categories);
     return (
       <FlatList
         data={categories}
+        style={commonStyles.container}
         refreshing={loading}
         onRefresh={this._requestCategoryList}
         keyExtractor={item => item.id}
@@ -94,15 +99,24 @@ export default class WPCategory extends React.Component<
           return (
             <TouchableOpacity
               activeOpacity={0.7}
+              style={{
+                paddingHorizontal: STYLE_SIZE.SPACING_HALF,
+                paddingVertical: STYLE_SIZE.SPACING_1,
+                alignItems: 'center',
+              }}
               onPress={() => this._pushPapers(item)}
             >
               <Image
                 source={{ uri: item.cover }}
-                style={{ width: imgSize, height: imgSize }}
+                style={{
+                  width: imgSize,
+                  height: imgSize * 1.2,
+                  borderRadius: 4,
+                }}
               />
-              <View>
-                <Text>{item.name}</Text>
-              </View>
+              <Text style={{ marginTop: STYLE_SIZE.SPACING_HALF }}>
+                {item.name}
+              </Text>
             </TouchableOpacity>
           );
         }}

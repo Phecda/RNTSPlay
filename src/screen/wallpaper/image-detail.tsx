@@ -7,7 +7,10 @@ import {
   Dimensions,
   ScrollView,
   FlatList,
+  TouchableOpacity,
+  Button,
 } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
@@ -23,6 +26,8 @@ import {
   ListSeperator,
 } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
+import { saveRemoteImage } from '../../utility/image-utils';
+import Toast from '../../component/toast';
 
 interface User {
   avatar: string;
@@ -51,9 +56,14 @@ export default class WPImageDetail extends React.Component<
   Prop & NavigationScreenProps,
   State
 > {
-  static navigationOptions: NavigationScreenOptions = {
+  static navigationOptions: (config: any) => NavigationScreenOptions = ({
+    navigation,
+  }) => ({
     title: '壁纸',
-  };
+    headerRight: (
+      <Button title="保存" onPress={navigation.getParam('onSave', () => {})} />
+    ),
+  });
   state: State = {
     comments: [],
   };
@@ -61,6 +71,7 @@ export default class WPImageDetail extends React.Component<
 
   componentDidMount() {
     this.mounted = true;
+    this.props.navigation.setParams({ onSave: this._showSave });
     this.loadComment();
   }
 
@@ -77,6 +88,19 @@ export default class WPImageDetail extends React.Component<
       })
       .catch(err => {
         console.log(err);
+      });
+  };
+
+  _showSave = () => {
+    const { image } = this.props;
+    if (!image) return;
+    saveRemoteImage(image.preview)
+      .then(some => {
+        Toast.showBottom('保存成功');
+      })
+      .catch(err => {
+        console.log(err);
+        Toast.showBottom(`保存失败，${err.message}`);
       });
   };
 
@@ -112,6 +136,10 @@ export default class WPImageDetail extends React.Component<
                     1}-${date.getDay() +
                     1} ${date.getHours()}:${date.getMinutes() + 1}`}</Text>
                 </View>
+                <View style={styles.likeContainer}>
+                  <Text style={styles.likeNumber}>{item.size}</Text>
+                  <FontAwesome name="heart-o" color="#ff8888" />
+                </View>
               </View>
               <View style={styles.commentContentContainer}>
                 <Text style={styles.commentContent}>
@@ -125,7 +153,7 @@ export default class WPImageDetail extends React.Component<
           );
         }}
         ItemSeparatorComponent={() => (
-          <View style={{ height: STYLE_SIZE.SPACING_1_5 }} />
+          <ListSeperator leftWidth={STYLE_SIZE.SPACING_1_5} />
         )}
         ListHeaderComponent={
           <FullWidthImage
@@ -154,7 +182,9 @@ const styles = StyleSheet.create({
     padding: STYLE_SIZE.SPACING_1_5,
     paddingBottom: STYLE_SIZE.SPACING_HALF,
   },
-  headerTextContainer: {},
+  headerTextContainer: {
+    flex: 1,
+  },
   userAvatar: {
     width: iconSize,
     height: iconSize,
@@ -174,4 +204,12 @@ const styles = StyleSheet.create({
     paddingTop: STYLE_SIZE.SPACING_1_5,
   },
   commentContent: {},
+  likeContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  likeNumber: {
+    fontSize: STYLE_SIZE.FONT_SMALL_COMMENT,
+    color: STYLE_COLOR.TEXT_GREY,
+  },
 });
