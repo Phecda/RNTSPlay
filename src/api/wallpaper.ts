@@ -13,7 +13,7 @@ interface RequestParamPaged extends RequestParamBase {
   limit?: number;
 }
 
-export function fetchCategory({ first = 0, adult = false }: RequestParamBase) {
+export function fetchCategory({ first = 0, adult = true }: RequestParamBase) {
   return fetch(
     `http://service.picasso.adesk.com/v1/vertical/category?adult=${adult}&first=${first}`,
     { method: 'GET' }
@@ -31,7 +31,7 @@ export function fetchCategory({ first = 0, adult = false }: RequestParamBase) {
 }
 
 export function fetchWallpapersInCategory(
-  { limit = 20, adult = false, first = 0, offset, order }: RequestParamPaged,
+  { limit = 20, adult = true, first = 0, offset, order }: RequestParamPaged,
   categoryId?: string
 ) {
   const url = categoryId

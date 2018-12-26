@@ -15,6 +15,12 @@
     "member-ordering": false,
     "jsx-no-lambda": false,
     "jsx-boolean-value": false,
-    "max-classes-per-file": false
+    "max-classes-per-file": false,
+    "no-empty": {
+      "severity": "warning"
+    },
+    "no-console": {
+      "severity": "warning"
+    }
   }
 }

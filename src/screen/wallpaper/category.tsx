@@ -13,6 +13,7 @@ import { NavigationScreenProps } from 'react-navigation';
 import { WallpaperAPI } from '../../api';
 import { ScreenID, STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import commonStyles from '../../variable/styles';
+import Toast from '../../component/toast';
 
 interface Prop {}
 
@@ -62,7 +63,7 @@ export default class WPCategory extends React.Component<
         }
       })
       .catch(err => {
-        console.log(err);
+        Toast.showBottom(err.message);
       })
       .then(() => {
         this.setState({ loading: false });
@@ -71,7 +72,7 @@ export default class WPCategory extends React.Component<
 
   _pushPapers = (category?: WallPaperCategoryProps) => {
     this.props.navigation.navigate(ScreenID.Wallpaper_Papers, {
-      category: category,
+      category,
     });
   };
 
@@ -81,7 +82,6 @@ export default class WPCategory extends React.Component<
     const cellWidth = width / 3;
 
     const imgSize = cellWidth - STYLE_SIZE.SPACING_HALF * 2;
-    console.log(categories);
     return (
       <FlatList
         data={categories}

@@ -49,6 +49,11 @@ interface Prop {
 
 interface State {
   comments: Comment[];
+  originSize?: {
+    width: number;
+    height: number;
+  };
+  modalVisible: boolean;
 }
 
 @withMappedNavigationProps()
@@ -66,20 +71,22 @@ export default class WPImageDetail extends React.Component<
   });
   state: State = {
     comments: [],
+    modalVisible: false,
   };
   mounted: boolean = false;
 
   componentDidMount() {
     this.mounted = true;
     this.props.navigation.setParams({ onSave: this._showSave });
-    this.loadComment();
+    this._loadComment();
+    this._loadSizeInfo();
   }
 
   componentWillUnmount() {
     this.mounted = false;
   }
 
-  loadComment = () => {
+  _loadComment = () => {
     WallpaperAPI.fetchCommentOfWallpaper(this.props.image.id)
       .then(res => {
         if (this.mounted) {
@@ -87,8 +94,27 @@ export default class WPImageDetail extends React.Component<
         }
       })
       .catch(err => {
-        console.log(err);
+        //
       });
+  };
+
+  _loadSizeInfo = () => {
+    Image.getSize(
+      this.props.image.preview,
+      (width, height) => {
+        if (this.mounted) {
+          this.setState({
+            originSize: {
+              width,
+              height,
+            },
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   };
 
   _showSave = () => {
@@ -106,10 +132,23 @@ export default class WPImageDetail extends React.Component<
 
   render() {
     const { image } = this.props;
-    const { comments } = this.state;
+    const { comments, originSize } = this.state;
     const { width, height } = Dimensions.get('window');
-    console.log(image);
-    console.log(comments);
+    const { width: screenWidth, height: screenHeight } = Dimensions.get(
+      'screen'
+    );
+    const screenRatio = screenHeight / screenWidth;
+    let originRatio = 0;
+    let compareText = '';
+    if (originSize) {
+      originRatio = originSize.height / originSize.width;
+      if (originRatio > screenRatio) {
+        compareText = ' 比您的屏幕稍长';
+      } else if (originRatio < screenRatio) {
+        compareText = ' 比您的屏幕稍宽';
+      }
+    }
+    // console.log(comments);
     return (
       <FlatList
         data={comments}
@@ -156,18 +195,23 @@ export default class WPImageDetail extends React.Component<
           <ListSeperator leftWidth={STYLE_SIZE.SPACING_1_5} />
         )}
         ListHeaderComponent={
-          <FullWidthImage
-            source={{ uri: image.preview }}
-            style={{
-              width: width,
-              height:
-                height -
-                FrameConstants.navBarHeight -
-                FrameConstants.safeAreaTop -
-                FrameConstants.statusBarHeight,
-            }}
-            resizeMode="contain"
-          />
+          <View style={{ alignItems: 'center' }}>
+            <Image
+              source={{ uri: image.img }}
+              style={{
+                width,
+                height: width,
+              }}
+              resizeMode="contain"
+            />
+            <Text style={{ margin: STYLE_SIZE.SPACING_1 }}>
+              原图尺寸
+              {originSize
+                ? `${originSize.width}*${originSize.height}`
+                : '载入中'}
+              {!!originSize && compareText}
+            </Text>
+          </View>
         }
       />
     );

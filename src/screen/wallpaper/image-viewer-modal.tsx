@@ -33,10 +33,6 @@ interface ImageViewerModalState {
   originHeight: number;
 }
 
-const { height, width, scale } = Dimensions.get('screen');
-const S_Height = height * scale;
-const S_Width = width * scale;
-
 export default class ImageViewerModal extends React.Component<
   ImageViewerModalProps,
   ImageViewerModalState
@@ -51,7 +47,7 @@ export default class ImageViewerModal extends React.Component<
   }
 
   componentDidMount() {
-    console.log('modal did mount');
+    //
   }
 
   componentDidUpdate(
@@ -89,7 +85,6 @@ export default class ImageViewerModal extends React.Component<
         Toast.showBottom('保存成功');
       })
       .catch(err => {
-        console.log(err);
         Toast.showBottom(`保存失败，${err.message}`);
       });
   };

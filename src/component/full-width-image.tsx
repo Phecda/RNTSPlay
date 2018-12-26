@@ -7,9 +7,14 @@ import {
   LayoutChangeEvent,
   ImageURISource,
 } from 'react-native';
+import Toast from './toast';
 
 interface Props extends ImageProps {
   source: ImageURISource;
+  initialSize: {
+    width: number;
+    height: number;
+  };
 }
 
 interface State {
@@ -18,61 +23,41 @@ interface State {
 }
 
 export default class FullWidthImage extends React.Component<Props, State> {
-  state: State = {
-    width: this.props.width,
-    height: this.props.height,
-  };
-  _root: View | null = null;
-
-  setNativeProps(nativeProps: any) {
-    this._root && this._root.setNativeProps(nativeProps);
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      ...props.initialSize,
+    };
   }
 
-  _onLayout = (event: LayoutChangeEvent) => {
-    const containerWidth = event.nativeEvent.layout.width;
-
-    if (this.props.width && this.props.height) {
-      this.setState({
-        width: containerWidth,
-        height: containerWidth * (this.props.height / this.props.width),
-      });
-    } else if (this.props.source && this.props.source.uri) {
+  componentDidMount() {
+    this.props.source.uri &&
       Image.getSize(
         this.props.source.uri,
         (width, height) => {
           this.setState({
-            width: containerWidth,
-            height: (containerWidth * height) / width,
+            width: this.props.initialSize.width,
+            height: (this.props.initialSize.width * height) / width,
           });
         },
-        err => {}
+        err => {
+          Toast.showBottom(err.message);
+        }
       );
-    }
-  };
+  }
 
   render() {
     return (
-      <View
-        ref={component => (this._root = component)}
-        onLayout={this._onLayout}
-        style={styles.container}
-      >
-        <Image
-          source={this.props.source}
-          style={[
-            this.props.style,
-            {
-              width: this.state.width,
-              height: this.state.height,
-            },
-          ]}
-        />
-      </View>
+      <Image
+        source={this.props.source}
+        style={[
+          this.props.style,
+          {
+            width: this.state.width,
+            height: this.state.height,
+          },
+        ]}
+      />
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'stretch',
-  },
-});
