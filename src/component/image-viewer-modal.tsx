@@ -3,7 +3,7 @@ import { Modal, ModalProps, View, StatusBar } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 interface ImageViewerModalProps extends ModalProps {
-  image: ADWallPaper;
+  imageUrl: string;
   onRequestClose: () => void;
 }
 
@@ -42,15 +42,11 @@ export default class ImageViewerModal extends React.Component<
   };
 
   render() {
-    const { image, onRequestClose } = this.props;
-    let url = '';
-    if (image) {
-      url = image.preview;
-    }
+    const { imageUrl, onRequestClose } = this.props;
     return (
       <Modal transparent={true} {...this.props}>
         <ImageViewer
-          imageUrls={[{ url }]}
+          imageUrls={[{ url: imageUrl }]}
           onCancel={onRequestClose}
           enableSwipeDown={true}
           saveToLocalByLongPress={false}

@@ -21,7 +21,7 @@ import { ListSeperator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { saveRemoteImage } from '../../utility/image-utils';
 import Toast from '../../component/toast';
-import ImageViewerModal from './image-viewer-modal';
+import ImageViewerModal from '../../component/image-viewer-modal';
 
 interface Prop {
   image: ADWallPaper;
@@ -250,7 +250,7 @@ export default class WPImageDetail extends React.Component<
         onRequestClose={() => {
           this.setState({ modalVisible: false });
         }}
-        image={this.props.image}
+        imageUrl={this.props.image.preview}
       />,
     ];
   }

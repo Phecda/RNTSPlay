@@ -54,7 +54,7 @@ export default class WPCategory extends React.Component<
         loading: true,
       });
     }
-    ADWallpaperAPI.fetchCategory({})
+    ADWallpaperAPI.fetchCategories({})
       .then(res => {
         if (this.mounted) {
           this.setState({
