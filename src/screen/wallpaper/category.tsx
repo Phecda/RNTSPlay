@@ -28,7 +28,7 @@ export default class WPCategory extends React.Component<
 > {
   static navigationOptions = ({ navigation }: any) => {
     return {
-      title: '目录',
+      title: '光点',
     };
   };
 
@@ -54,19 +54,20 @@ export default class WPCategory extends React.Component<
         loading: true,
       });
     }
-    return WallpaperAPI.fetchCategory({})
+    WallpaperAPI.fetchCategory({})
       .then(res => {
         if (this.mounted) {
           this.setState({
             categories: res.category,
+            loading: false,
           });
         }
       })
       .catch(err => {
+        if (this.mounted) {
+          this.setState({ loading: false });
+        }
         Toast.showBottom(err.message);
-      })
-      .then(() => {
-        this.setState({ loading: false });
       });
   };
 
