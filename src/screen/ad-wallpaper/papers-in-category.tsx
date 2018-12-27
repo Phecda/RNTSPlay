@@ -150,7 +150,7 @@ export default class WPPapersInCategory extends React.Component<
                 style={{ width: imgSize, height: imgSize * 1.5 }}
                 activeOpacity={0.7}
                 onPress={() => {
-                  this.props.navigation.navigate(ScreenID.Wallpaper_Detail, {
+                  this.props.navigation.navigate(ScreenID.AD_Wallpaper_Detail, {
                     image: item,
                   });
                 }}

@@ -72,7 +72,7 @@ export default class WPCategory extends React.Component<
   };
 
   _pushPapers = (category?: ADWallPaperCategory) => {
-    this.props.navigation.navigate(ScreenID.Wallpaper_Papers, {
+    this.props.navigation.navigate(ScreenID.AD_Wallpaper_Papers, {
       category,
     });
   };
