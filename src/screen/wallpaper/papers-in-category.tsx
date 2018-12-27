@@ -20,6 +20,7 @@ import commonStyles from '../../variable/styles';
 import ImageViewerModal from './image-viewer-modal';
 import { showActionSheet } from '../../utility/pop-view';
 import { ScreenID } from '../../variable';
+import Toast from '../../component/toast';
 
 interface Prop {
   category?: WallPaperCategoryProps;
@@ -110,8 +111,8 @@ export default class WPPapersInCategory extends React.Component<
       },
       category ? category.id : undefined
     )
-      .then(json => {
-        const newPapers = json.res.vertical;
+      .then(res => {
+        const newPapers = res.vertical;
         this.setState({
           wallpapers: refresh ? newPapers : wallpapers.concat(newPapers),
           ...loadedState,
@@ -119,7 +120,7 @@ export default class WPPapersInCategory extends React.Component<
       })
       .catch(err => {
         this.setState({ ...loadedState });
-        console.log(err);
+        Toast.showBottom(err.message);
       });
   };
 

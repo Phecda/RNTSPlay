@@ -9,6 +9,7 @@ import {
   FlatList,
   TouchableOpacity,
   Button,
+  SectionList,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
@@ -29,26 +30,13 @@ import commonStyles from '../../variable/styles';
 import { saveRemoteImage } from '../../utility/image-utils';
 import Toast from '../../component/toast';
 
-interface User {
-  avatar: string;
-  gender: number;
-  name: string;
-}
-
-interface Comment {
-  atime: number;
-  content: string;
-  user: User;
-  size: number;
-  reply_user: User | {};
-}
-
 interface Prop {
   image: WallPaperProps;
 }
 
 interface State {
-  comments: Comment[];
+  comments: WallpaperComment[];
+  hotComments: WallpaperComment[];
   originSize?: {
     width: number;
     height: number;
@@ -72,6 +60,7 @@ export default class WPImageDetail extends React.Component<
   state: State = {
     comments: [],
     modalVisible: false,
+    hotComments: [],
   };
   mounted: boolean = false;
 
@@ -90,11 +79,12 @@ export default class WPImageDetail extends React.Component<
     WallpaperAPI.fetchCommentOfWallpaper(this.props.image.id)
       .then(res => {
         if (this.mounted) {
-          this.setState({ comments: res.res.comment });
+          this.setState({ comments: res.comment, hotComments: res.hot });
         }
       })
       .catch(err => {
         //
+        Toast.showBottom(err.message);
       });
   };
 
@@ -112,7 +102,7 @@ export default class WPImageDetail extends React.Component<
         }
       },
       err => {
-        console.log(err);
+        Toast.showBottom(err);
       }
     );
   };
@@ -125,14 +115,13 @@ export default class WPImageDetail extends React.Component<
         Toast.showBottom('保存成功');
       })
       .catch(err => {
-        console.log(err);
         Toast.showBottom(`保存失败，${err.message}`);
       });
   };
 
   render() {
     const { image } = this.props;
-    const { comments, originSize } = this.state;
+    const { comments, originSize, hotComments } = this.state;
     const { width, height } = Dimensions.get('window');
     const { width: screenWidth, height: screenHeight } = Dimensions.get(
       'screen'
@@ -148,15 +137,39 @@ export default class WPImageDetail extends React.Component<
         compareText = ' 比您的屏幕稍宽';
       }
     }
-    // console.log(comments);
+    const sections = [];
+    if (hotComments.length) {
+      sections.push({
+        data: hotComments,
+        sectionTitle: '热评',
+      });
+    }
+    if (comments.length) {
+      sections.push({
+        data: comments,
+        sectionTitle: '最新评论',
+      });
+    }
     return (
-      <FlatList
-        data={comments}
+      <SectionList
+        sections={sections}
         keyExtractor={(_, i) => `${i}`}
         style={commonStyles.container}
         contentContainerStyle={{
           paddingBottom: FrameConstants.safeAreaBottom,
         }}
+        renderSectionHeader={({ section }) => {
+          return (
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionHeaderText}>
+                {section.sectionTitle}
+              </Text>
+            </View>
+          );
+        }}
+        renderSectionFooter={() => (
+          <View style={{ height: STYLE_SIZE.SPACING_2 }} />
+        )}
         renderItem={({ item }) => {
           const date = new Date(item.atime * 1000);
 
@@ -256,4 +269,14 @@ const styles = StyleSheet.create({
     fontSize: STYLE_SIZE.FONT_SMALL_COMMENT,
     color: STYLE_COLOR.TEXT_GREY,
   },
+  sectionHeader: {
+    height: 44,
+    backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: STYLE_SIZE.SPACING_1_5,
+    borderBottomColor: STYLE_COLOR.SEPERATOR_HEAVY,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  sectionHeaderText: {},
 });

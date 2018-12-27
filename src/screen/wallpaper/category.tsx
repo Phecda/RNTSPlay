@@ -55,10 +55,10 @@ export default class WPCategory extends React.Component<
       });
     }
     return WallpaperAPI.fetchCategory({})
-      .then(json => {
+      .then(res => {
         if (this.mounted) {
           this.setState({
-            categories: json.res.category,
+            categories: res.category,
           });
         }
       })

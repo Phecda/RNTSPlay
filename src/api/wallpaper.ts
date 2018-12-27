@@ -13,21 +13,35 @@ interface RequestParamPaged extends RequestParamBase {
   limit?: number;
 }
 
-export function fetchCategory({ first = 0, adult = true }: RequestParamBase) {
-  return fetch(
-    `http://service.picasso.adesk.com/v1/vertical/category?adult=${adult}&first=${first}`,
-    { method: 'GET' }
-  )
+interface Response<R = any> {
+  code: number;
+  msg: string;
+  res: R;
+}
+
+async function fetchData<T = any>(url: string) {
+  return fetch(url, { method: 'GET' })
     .then(response => {
       if (response.ok) {
         return response.text();
-      } else {
-        return Promise.reject();
       }
+      throw Error(response.statusText);
     })
-    .then(text => {
-      return JSON.parse(text);
+    .then(responseText => {
+      return JSON.parse(responseText);
+    })
+    .then((json: Response<T>) => {
+      if (json.code !== 0) {
+        throw Error(json.msg);
+      }
+      return json.res;
     });
+}
+
+export function fetchCategory({ first = 0, adult = true }: RequestParamBase) {
+  return fetchData<{ category: WallPaperCategoryProps[] }>(
+    `http://service.picasso.adesk.com/v1/vertical/category?adult=${adult}&first=${first}`
+  );
 }
 
 export function fetchWallpapersInCategory(
@@ -37,36 +51,16 @@ export function fetchWallpapersInCategory(
   const url = categoryId
     ? `http://service.picasso.adesk.com/v1/vertical/category/${categoryId}/vertical?limit=${limit}&adult=${adult}&first=${first}&skip=${offset}&order=${order}`
     : `http://service.picasso.adesk.com/v1/vertical/vertical?limit=${limit}&adult=${adult}&first=${first}&skip=${offset}&order=${order}`;
-  return fetch(url, {
-    method: 'GET',
-  })
-    .then(response => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        return Promise.reject();
-      }
-    })
-    .then(text => {
-      return JSON.parse(text);
-    });
+  return fetchData<{ vertical: WallPaperProps[] }>(url);
 }
 
 export function fetchCommentOfWallpaper(wallpaperID: string) {
-  return fetch(
-    `http://service.picasso.adesk.com/v2/vertical/vertical/${wallpaperID}/comment`,
-    {
-      method: 'GET',
-    }
-  )
-    .then(response => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        return Promise.reject();
-      }
-    })
-    .then(text => {
-      return JSON.parse(text);
-    });
+  return fetchData<{
+    comment: WallpaperComment[];
+    hot: WallpaperComment[];
+    meta: any;
+    vertical: any;
+  }>(
+    `http://service.picasso.adesk.com/v2/vertical/vertical/${wallpaperID}/comment`
+  );
 }

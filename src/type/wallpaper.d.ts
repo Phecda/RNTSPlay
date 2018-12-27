@@ -13,3 +13,17 @@ declare interface WallPaperCategoryProps {
   desc: string;
   cover: string;
 }
+
+declare interface WallPaperUser {
+  avatar: string;
+  gender: number;
+  name: string;
+}
+
+declare interface WallpaperComment {
+  atime: number;
+  content: string;
+  user: WallPaperUser;
+  size: number;
+  reply_user: WallPaperUser | {};
+}
