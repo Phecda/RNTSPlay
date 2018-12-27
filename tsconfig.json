@@ -4,11 +4,12 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react-native",
-    "lib": ["es6"],
+    "lib": ["es2017"],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "esnext",
+    "target": "es2015",
+    "module": "es2015",
     "experimentalDecorators": true
   },
   "exclude": ["node_modules"]
