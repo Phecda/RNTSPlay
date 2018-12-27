@@ -4,8 +4,8 @@ import WPCategory from './category';
 import WPPapersInCategory from './papers-in-category';
 import WPImageDetail from './image-detail';
 
-export default createStackNavigator({
-  [ScreenID.AD_Wallpaper_Category]: WPCategory,
-  [ScreenID.AD_Wallpaper_Papers]: WPPapersInCategory,
-  [ScreenID.AD_Wallpaper_Detail]: WPImageDetail,
-});
+export {
+  WPCategory as ADWPCategory,
+  WPPapersInCategory as ADWPPapersInCategory,
+  WPImageDetail as ADWPImageDetail,
+};

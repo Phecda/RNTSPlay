@@ -1,8 +1,24 @@
-import { createBottomTabNavigator } from 'react-navigation';
-import ADeskStack from './ad-wallpaper';
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation';
+import { ScreenID } from '../variable';
+import {
+  ADWPCategory,
+  ADWPImageDetail,
+  ADWPPapersInCategory,
+} from './ad-wallpaper';
+import { QHWPCategory } from './qh-wallpaper';
 
 const HomeTabNavigator = createBottomTabNavigator({
-  adesk: ADeskStack,
+  [ScreenID.AD_Wallpaper_Category]: ADWPCategory,
+  [ScreenID.QH_Wallpaper_Category]: QHWPCategory,
 });
 
-export default HomeTabNavigator;
+const MainStack = createStackNavigator({
+  HomeTab: HomeTabNavigator,
+  [ScreenID.AD_Wallpaper_Detail]: ADWPImageDetail,
+  [ScreenID.AD_Wallpaper_Papers]: ADWPPapersInCategory,
+});
+
+export default MainStack;
