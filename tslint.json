@@ -16,9 +16,7 @@
     "jsx-no-lambda": false,
     "jsx-boolean-value": false,
     "max-classes-per-file": false,
-    "no-empty": {
-      "severity": "warning"
-    },
+    "no-empty": false,
     "no-console": {
       "severity": "warning"
     }
