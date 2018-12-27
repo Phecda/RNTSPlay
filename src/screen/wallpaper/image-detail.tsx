@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Button,
   SectionList,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
@@ -29,6 +30,7 @@ import {
 import commonStyles from '../../variable/styles';
 import { saveRemoteImage } from '../../utility/image-utils';
 import Toast from '../../component/toast';
+import ImageViewerModal from './image-viewer-modal';
 
 interface Prop {
   image: WallPaperProps;
@@ -121,22 +123,8 @@ export default class WPImageDetail extends React.Component<
 
   render() {
     const { image } = this.props;
-    const { comments, originSize, hotComments } = this.state;
+    const { comments, originSize, hotComments, modalVisible } = this.state;
     const { width, height } = Dimensions.get('window');
-    const { width: screenWidth, height: screenHeight } = Dimensions.get(
-      'screen'
-    );
-    const screenRatio = screenHeight / screenWidth;
-    let originRatio = 0;
-    let compareText = '';
-    if (originSize) {
-      originRatio = originSize.height / originSize.width;
-      if (originRatio > screenRatio) {
-        compareText = ' 比您的屏幕稍长';
-      } else if (originRatio < screenRatio) {
-        compareText = ' 比您的屏幕稍宽';
-      }
-    }
     const sections = [];
     if (hotComments.length) {
       sections.push({
@@ -150,8 +138,9 @@ export default class WPImageDetail extends React.Component<
         sectionTitle: '最新评论',
       });
     }
-    return (
+    return [
       <SectionList
+        key="section"
         sections={sections}
         keyExtractor={(_, i) => `${i}`}
         style={commonStyles.container}
@@ -209,25 +198,38 @@ export default class WPImageDetail extends React.Component<
         )}
         ListHeaderComponent={
           <View style={{ alignItems: 'center' }}>
-            <Image
-              source={{ uri: image.img }}
-              style={{
-                width,
-                height: width,
+            <TouchableWithoutFeedback
+              onPress={() => {
+                this.setState({ modalVisible: true });
               }}
-              resizeMode="contain"
-            />
+            >
+              <Image
+                source={{ uri: image.img }}
+                style={{
+                  width,
+                  height: width,
+                }}
+                resizeMode="contain"
+              />
+            </TouchableWithoutFeedback>
             <Text style={{ margin: STYLE_SIZE.SPACING_1 }}>
               原图尺寸
               {originSize
                 ? `${originSize.width}*${originSize.height}`
                 : '载入中'}
-              {!!originSize && compareText}
             </Text>
           </View>
         }
-      />
-    );
+      />,
+      <ImageViewerModal
+        key="modal"
+        visible={modalVisible}
+        onRequestClose={() => {
+          this.setState({ modalVisible: false });
+        }}
+        image={this.props.image}
+      />,
+    ];
   }
 }
 
