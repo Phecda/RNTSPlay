@@ -20,7 +20,10 @@ interface Response<R = any> {
 }
 
 async function fetchData<T = any>(url: string) {
-  return fetch(url, { method: 'GET' })
+  return fetch(url, {
+    method: 'GET',
+    headers: { 'User-Agent': 'lightwp,198,appstore' },
+  })
     .then(response => {
       if (response.ok) {
         return response.text();
@@ -38,9 +41,11 @@ async function fetchData<T = any>(url: string) {
     });
 }
 
-export function fetchCategory({ first = 0, adult = true }: RequestParamBase) {
+export function fetchCategories({ first = 0, adult = true }: RequestParamBase) {
   return fetchData<{ category: ADWallPaperCategory[] }>(
-    `http://service.picasso.adesk.com/v1/vertical/category?adult=${adult}&first=${first}`
+    `http://service.picasso.adesk.com/v1/vertical/category?adult=${Number(
+      adult
+    )}&first=${first}`
   );
 }
 
@@ -49,8 +54,12 @@ export function fetchWallpapersInCategory(
   categoryId?: string
 ) {
   const url = categoryId
-    ? `http://service.picasso.adesk.com/v1/vertical/category/${categoryId}/vertical?limit=${limit}&adult=${adult}&first=${first}&skip=${offset}&order=${order}`
-    : `http://service.picasso.adesk.com/v1/vertical/vertical?limit=${limit}&adult=${adult}&first=${first}&skip=${offset}&order=${order}`;
+    ? `http://service.picasso.adesk.com/v1/vertical/category/${categoryId}/vertical?limit=${limit}&adult=${Number(
+        adult
+      )}&first=${first}&skip=${offset}&order=${order}`
+    : `http://service.picasso.adesk.com/v1/vertical/vertical?limit=${limit}&adult=${Number(
+        adult
+      )}&first=${first}&skip=${offset}&order=${order}`;
   return fetchData<{ vertical: ADWallPaper[] }>(url);
 }
 
@@ -63,4 +72,16 @@ export function fetchCommentOfWallpaper(wallpaperID: string) {
   }>(
     `http://service.picasso.adesk.com/v2/vertical/vertical/${wallpaperID}/comment`
   );
+}
+
+export function searchWallpaper(
+  { limit = 20, adult = true, first = 0, offset, order }: RequestParamPaged,
+  keyword: string
+) {
+  const url = `http://so.picasso.adesk.com/v1/search/vertical/resource/${encodeURIComponent(
+    keyword
+  )}?limit=${limit}&adult=${Number(
+    adult
+  )}&first=${first}&skip=${offset}&order=${order}`;
+  return fetchData<{}>(url);
 }

@@ -1,9 +1,14 @@
 declare interface ADWallPaper {
+  atime: number;
   thumb: string;
   id: string;
   img: string;
   preview: string;
   rule: string;
+  /**
+   * 请求时需要设置User-Agent 为 `lightwp,198,appstore` 才有
+   */
+  user?: ADWallPaperUser;
 }
 
 declare interface ADWallPaperCategory {
@@ -16,8 +21,8 @@ declare interface ADWallPaperCategory {
 
 declare interface ADWallPaperUser {
   avatar: string;
-  gender: number;
   name: string;
+  follower: number;
 }
 
 declare interface ADWallpaperComment {

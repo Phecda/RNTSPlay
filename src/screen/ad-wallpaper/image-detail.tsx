@@ -133,6 +133,7 @@ export default class WPImageDetail extends React.Component<
       <SectionList
         key="section"
         sections={sections}
+        stickySectionHeadersEnabled={false}
         keyExtractor={(_, i) => `${i}`}
         style={commonStyles.container}
         contentContainerStyle={{
@@ -147,9 +148,6 @@ export default class WPImageDetail extends React.Component<
             </View>
           );
         }}
-        renderSectionFooter={() => (
-          <View style={{ height: STYLE_SIZE.SPACING_2 }} />
-        )}
         renderItem={({ item }) => {
           const date = new Date(item.atime * 1000);
 
@@ -187,30 +185,64 @@ export default class WPImageDetail extends React.Component<
         ItemSeparatorComponent={() => (
           <ListSeperator leftWidth={STYLE_SIZE.SPACING_1_5} />
         )}
-        ListHeaderComponent={
-          <View style={{ alignItems: 'center' }}>
-            <TouchableWithoutFeedback
-              onPress={() => {
-                this.setState({ modalVisible: true });
-              }}
-            >
-              <Image
-                source={{ uri: image.img }}
-                style={{
-                  width,
-                  height: width,
+        ListHeaderComponent={() => {
+          const date = new Date(image.atime * 1000);
+          return (
+            <View>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  this.setState({ modalVisible: true });
                 }}
-                resizeMode="contain"
-              />
-            </TouchableWithoutFeedback>
-            <Text style={{ margin: STYLE_SIZE.SPACING_1 }}>
-              原图尺寸
-              {originSize
-                ? `${originSize.width}*${originSize.height}`
-                : '载入中'}
-            </Text>
-          </View>
-        }
+              >
+                <Image
+                  source={{ uri: image.img }}
+                  style={{
+                    width,
+                    height: width,
+                  }}
+                  resizeMode="contain"
+                />
+              </TouchableWithoutFeedback>
+              <Text
+                style={{ margin: STYLE_SIZE.SPACING_1, textAlign: 'center' }}
+              >
+                原图尺寸
+                {originSize
+                  ? `${originSize.width}*${originSize.height}`
+                  : '载入中'}
+              </Text>
+              {!!image.user && (
+                <View style={styles.commentCell}>
+                  <View
+                    style={[
+                      styles.cellHeader,
+                      { paddingBottom: STYLE_SIZE.SPACING_1_5 },
+                    ]}
+                  >
+                    <Image
+                      source={{ uri: image.user.avatar }}
+                      style={styles.userAvatar}
+                    />
+                    <View style={styles.headerTextContainer}>
+                      <Text style={styles.userName}>{image.user.name}</Text>
+                      <Text
+                        style={styles.commentTime}
+                      >{`${date.getFullYear()}-${date.getMonth() +
+                        1}-${date.getDay() +
+                        1} ${date.getHours()}:${date.getMinutes() + 1}`}</Text>
+                    </View>
+                    <View style={styles.likeContainer}>
+                      <Text style={styles.likeNumber}>
+                        {image.user.follower}
+                      </Text>
+                      <FontAwesome name="heart-o" color="#ff8888" />
+                    </View>
+                  </View>
+                </View>
+              )}
+            </View>
+          );
+        }}
       />,
       <ImageViewerModal
         key="modal"
@@ -268,6 +300,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: STYLE_SIZE.SPACING_1_5,
+    marginTop: STYLE_SIZE.SPACING_2,
     borderBottomColor: STYLE_COLOR.SEPERATOR_HEAVY,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
