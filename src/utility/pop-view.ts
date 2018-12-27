@@ -1,14 +1,14 @@
 import { ActionSheetIOS, Platform } from 'react-native';
 import DialogAndroid from 'react-native-dialogs';
 
-type ActionSheetConfig = {
+interface ActionSheetConfig {
   options: string[];
   title?: string;
   message?: string;
   onCancel?: () => void;
   onSelect: (index: number) => void;
   selectedIndex?: number;
-};
+}
 export function showActionSheet({
   options,
   title,
@@ -39,7 +39,7 @@ export function showActionSheet({
       negativeText: '取消',
       positiveText: null,
       type:
-        selectedIndex != undefined && selectedIndex >= 0
+        selectedIndex !== undefined && selectedIndex >= 0
           ? DialogAndroid.listRadio
           : undefined,
     }).then(result => {

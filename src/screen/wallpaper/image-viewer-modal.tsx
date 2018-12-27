@@ -142,7 +142,7 @@ export default class ImageViewerModal extends React.Component<
                   justifyContent: 'space-between',
                 }}
               >
-                <Button title="关闭" onPress={onRequestClose!} />
+                <Button title="关闭" onPress={onRequestClose} />
                 <Button title="保存" onPress={this._showSave} />
               </View>
             </View>
