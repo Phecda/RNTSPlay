@@ -1,30 +1,9 @@
 import React from 'react';
-import {
-  Modal,
-  ModalProps,
-  View,
-  SafeAreaView,
-  Text,
-  Dimensions,
-  Image,
-  Alert,
-  Button,
-  Platform,
-  StatusBar,
-} from 'react-native';
+import { Modal, ModalProps, View, StatusBar } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { STYLE_COLOR, FrameConstants } from '../../variable';
-import { showActionSheet } from '../../utility/pop-view';
-import { saveRemoteImage } from '../../utility/image-utils';
-import Toast from '../../component/toast';
-
-interface ModalImageInfo {
-  url: string;
-  rule: string;
-}
 
 interface ImageViewerModalProps extends ModalProps {
-  image: WallPaperProps;
+  image: ADWallPaper;
   onRequestClose: () => void;
 }
 
@@ -41,10 +20,6 @@ export default class ImageViewerModal extends React.Component<
     this.state = {
       barVisible: true,
     };
-  }
-
-  componentDidMount() {
-    //
   }
 
   componentDidUpdate(
@@ -68,7 +43,6 @@ export default class ImageViewerModal extends React.Component<
 
   render() {
     const { image, onRequestClose } = this.props;
-    const { barVisible } = this.state;
     let url = '';
     if (image) {
       url = image.preview;

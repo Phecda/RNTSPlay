@@ -1,3 +1,3 @@
-import * as WallpaperAPI from './wallpaper';
+import * as ADWallpaperAPI from './ad-wallpaper';
 
-export { WallpaperAPI };
+export { ADWallpaperAPI };

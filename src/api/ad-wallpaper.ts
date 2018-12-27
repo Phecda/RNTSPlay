@@ -39,7 +39,7 @@ async function fetchData<T = any>(url: string) {
 }
 
 export function fetchCategory({ first = 0, adult = true }: RequestParamBase) {
-  return fetchData<{ category: WallPaperCategoryProps[] }>(
+  return fetchData<{ category: ADWallPaperCategory[] }>(
     `http://service.picasso.adesk.com/v1/vertical/category?adult=${adult}&first=${first}`
   );
 }
@@ -51,13 +51,13 @@ export function fetchWallpapersInCategory(
   const url = categoryId
     ? `http://service.picasso.adesk.com/v1/vertical/category/${categoryId}/vertical?limit=${limit}&adult=${adult}&first=${first}&skip=${offset}&order=${order}`
     : `http://service.picasso.adesk.com/v1/vertical/vertical?limit=${limit}&adult=${adult}&first=${first}&skip=${offset}&order=${order}`;
-  return fetchData<{ vertical: WallPaperProps[] }>(url);
+  return fetchData<{ vertical: ADWallPaper[] }>(url);
 }
 
 export function fetchCommentOfWallpaper(wallpaperID: string) {
   return fetchData<{
-    comment: WallpaperComment[];
-    hot: WallpaperComment[];
+    comment: ADWallpaperComment[];
+    hot: ADWallpaperComment[];
     meta: any;
     vertical: any;
   }>(

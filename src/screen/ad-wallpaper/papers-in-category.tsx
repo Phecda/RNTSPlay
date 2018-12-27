@@ -1,13 +1,11 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Button,
   FlatList,
   Image,
   Dimensions,
-  Platform,
   TouchableOpacity,
 } from 'react-native';
 import {
@@ -15,22 +13,21 @@ import {
   NavigationScreenOptions,
 } from 'react-navigation';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
-import { WallpaperAPI } from '../../api';
+import { ADWallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
-import ImageViewerModal from './image-viewer-modal';
 import { showActionSheet } from '../../utility/pop-view';
 import { ScreenID } from '../../variable';
 import Toast from '../../component/toast';
 
 interface Prop {
-  category?: WallPaperCategoryProps;
+  category?: ADWallPaperCategory;
 }
 
 interface State {
-  wallpapers: WallPaperProps[];
+  wallpapers: ADWallPaper[];
   loading: boolean;
   refreshing: boolean;
-  image: WallPaperProps | null;
+  image: ADWallPaper | null;
   orderIndex: number;
 }
 
@@ -103,7 +100,7 @@ export default class WPPapersInCategory extends React.Component<
       ...loadingState,
     });
 
-    return WallpaperAPI.fetchWallpapersInCategory(
+    return ADWallpaperAPI.fetchWallpapersInCategory(
       {
         order: options[this.state.orderIndex].key as Order,
         offset: refresh ? 0 : wallpapers.length,

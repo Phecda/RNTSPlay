@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from 'react-navigation';
-import ADeskStack from './wallpaper';
+import ADeskStack from './ad-wallpaper';
 
 const HomeTabNavigator = createBottomTabNavigator({
   adesk: ADeskStack,

@@ -10,15 +10,15 @@ import {
   Button,
 } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
-import { WallpaperAPI } from '../../api';
-import { ScreenID, STYLE_SIZE, STYLE_COLOR } from '../../variable';
+import { ADWallpaperAPI } from '../../api';
+import { ScreenID, STYLE_SIZE } from '../../variable';
 import commonStyles from '../../variable/styles';
 import Toast from '../../component/toast';
 
 interface Prop {}
 
 interface State {
-  categories: WallPaperCategoryProps[];
+  categories: ADWallPaperCategory[];
   loading: boolean;
 }
 
@@ -54,7 +54,7 @@ export default class WPCategory extends React.Component<
         loading: true,
       });
     }
-    WallpaperAPI.fetchCategory({})
+    ADWallpaperAPI.fetchCategory({})
       .then(res => {
         if (this.mounted) {
           this.setState({
@@ -71,7 +71,7 @@ export default class WPCategory extends React.Component<
       });
   };
 
-  _pushPapers = (category?: WallPaperCategoryProps) => {
+  _pushPapers = (category?: ADWallPaperCategory) => {
     this.props.navigation.navigate(ScreenID.Wallpaper_Papers, {
       category,
     });

@@ -5,9 +5,6 @@ import {
   Text,
   Image,
   Dimensions,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
   Button,
   SectionList,
   TouchableWithoutFeedback,
@@ -16,29 +13,23 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
-  SafeAreaView,
 } from 'react-navigation';
 import { withMappedNavigationProps } from 'react-navigation-props-mapper';
-import { WallpaperAPI } from '../../api';
+import { ADWallpaperAPI } from '../../api';
 import { FrameConstants, STYLE_SIZE, STYLE_COLOR } from '../../variable';
-import FullWidthImage from '../../component/full-width-image';
-import {
-  ActionCell,
-  ActionDualCell,
-  ListSeperator,
-} from '../../component/table-cell';
+import { ListSeperator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { saveRemoteImage } from '../../utility/image-utils';
 import Toast from '../../component/toast';
 import ImageViewerModal from './image-viewer-modal';
 
 interface Prop {
-  image: WallPaperProps;
+  image: ADWallPaper;
 }
 
 interface State {
-  comments: WallpaperComment[];
-  hotComments: WallpaperComment[];
+  comments: ADWallpaperComment[];
+  hotComments: ADWallpaperComment[];
   originSize?: {
     width: number;
     height: number;
@@ -78,7 +69,7 @@ export default class WPImageDetail extends React.Component<
   }
 
   _loadComment = () => {
-    WallpaperAPI.fetchCommentOfWallpaper(this.props.image.id)
+    ADWallpaperAPI.fetchCommentOfWallpaper(this.props.image.id)
       .then(res => {
         if (this.mounted) {
           this.setState({ comments: res.comment, hotComments: res.hot });

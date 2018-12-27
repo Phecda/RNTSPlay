@@ -1,4 +1,4 @@
-declare interface WallPaperProps {
+declare interface ADWallPaper {
   thumb: string;
   id: string;
   img: string;
@@ -6,7 +6,7 @@ declare interface WallPaperProps {
   rule: string;
 }
 
-declare interface WallPaperCategoryProps {
+declare interface ADWallPaperCategory {
   ename: string;
   name: string;
   id: string;
@@ -14,16 +14,16 @@ declare interface WallPaperCategoryProps {
   cover: string;
 }
 
-declare interface WallPaperUser {
+declare interface ADWallPaperUser {
   avatar: string;
   gender: number;
   name: string;
 }
 
-declare interface WallpaperComment {
+declare interface ADWallpaperComment {
   atime: number;
   content: string;
-  user: WallPaperUser;
+  user: ADWallPaperUser;
   size: number;
-  reply_user: WallPaperUser | {};
+  reply_user: ADWallPaperUser | {};
 }
