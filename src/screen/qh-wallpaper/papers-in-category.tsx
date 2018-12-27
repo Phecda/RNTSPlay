@@ -15,7 +15,7 @@ import {
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { QHWallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
-import { ScreenID } from '../../variable';
+import { ScreenID, STYLE_SIZE } from '../../variable';
 import Toast from '../../component/toast';
 
 interface Prop {
@@ -93,11 +93,10 @@ export default class WPPapersInCategory extends React.Component<
   render() {
     const { refreshing, wallpapers, image } = this.state;
     const { width } = Dimensions.get('window');
-    const imgSize = width / 3;
+    const imgSize = width - STYLE_SIZE.SPACING_2;
     return (
       <View style={commonStyles.container}>
         <FlatList
-          numColumns={3}
           refreshing={refreshing}
           onRefresh={() => this._requestData(true)}
           onEndReached={() => this._requestData(false)}
@@ -106,7 +105,7 @@ export default class WPPapersInCategory extends React.Component<
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                style={{ width: imgSize, height: imgSize * 1.5 }}
+                style={{ padding: STYLE_SIZE.SPACING_1 }}
                 activeOpacity={0.7}
                 onPress={() => {
                   this.props.navigation.navigate(ScreenID.QH_Wallpaper_Detail, {
@@ -115,7 +114,7 @@ export default class WPPapersInCategory extends React.Component<
                 }}
               >
                 <Image
-                  style={{ width: imgSize, height: imgSize * 1.5 }}
+                  style={{ width: imgSize, height: imgSize * 0.5625 }}
                   source={{ uri: item.url }}
                 />
               </TouchableOpacity>
