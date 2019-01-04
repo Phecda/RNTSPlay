@@ -43,7 +43,9 @@ export default ({
             </Text>
           )}
           {!!dualText && (
-            <Text style={tableCellStyles.dualText}>{dualText}</Text>
+            <Text style={tableCellStyles.dualText} numberOfLines={1}>
+              {dualText}
+            </Text>
           )}
         </View>
         {detailText ? (

@@ -160,7 +160,7 @@ export default class WPImageDetail extends React.Component<
       //     );
       //   }}
       //   ItemSeparatorComponent={() => (
-      //     <ListSeperator leftWidth={STYLE_SIZE.SPACING_1_5} />
+      //     <ListSeparator leftWidth={STYLE_SIZE.SPACING_1_5} />
       //   )}
       //   ListHeaderComponent={() => {
       //     const date = new Date(image.atime * 1000);
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: STYLE_SIZE.SPACING_1_5,
     marginTop: STYLE_SIZE.SPACING_2,
-    borderBottomColor: STYLE_COLOR.SEPERATOR_HEAVY,
+    borderBottomColor: STYLE_COLOR.SEPARATOR_HEAVY,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   sectionHeaderText: {},

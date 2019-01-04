@@ -30,13 +30,13 @@ const tableCellStyles = StyleSheet.create({
     fontSize: STYLE_SIZE.FONT_SECONDARY,
     color: STYLE_COLOR.TEXT_SECONDARY,
   },
-  seperatorBackground: {
+  separatorBackground: {
     backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND,
     flex: 1,
     height: StyleSheet.hairlineWidth,
   },
-  seperatorLine: {
-    backgroundColor: STYLE_COLOR.SEPERATOR_HEAVY,
+  separatorLine: {
+    backgroundColor: STYLE_COLOR.SEPARATOR_HEAVY,
     flex: 1,
   },
 });

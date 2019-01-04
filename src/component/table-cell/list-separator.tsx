@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import tableCellStyles from './styles';
 import { STYLE_SIZE } from '../../variable';
 
-interface SeperatorProps {
+interface SeparatorProps {
   leftWidth?: number;
   rightWidth?: number;
 }
@@ -11,13 +11,13 @@ interface SeperatorProps {
 export default ({
   leftWidth = STYLE_SIZE.SPACING_2,
   rightWidth = 0,
-}: SeperatorProps) => (
+}: SeparatorProps) => (
   <View
     style={[
-      tableCellStyles.seperatorBackground,
+      tableCellStyles.separatorBackground,
       { paddingLeft: leftWidth, paddingRight: rightWidth },
     ]}
   >
-    <View style={tableCellStyles.seperatorLine} />
+    <View style={tableCellStyles.separatorLine} />
   </View>
 );

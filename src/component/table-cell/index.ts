@@ -1,5 +1,5 @@
 import ActionCell from './action-cell';
 import ActionDualCell from './action-dual-cell';
-import ListSeperator from './list-seperator';
+import ListSeparator from './list-separator';
 
-export { ActionCell, ActionDualCell, ListSeperator };
+export { ActionCell, ActionDualCell, ListSeparator };

@@ -18,11 +18,11 @@ export default {
   /**
    * #EEEEEE
    */
-  SEPERATOR_LIGHT: '#EEEEEE',
+  SEPARATOR_LIGHT: '#EEEEEE',
   /**
    * #CCCCCC
    */
-  SEPERATOR_HEAVY: '#CCCCCC',
+  SEPARATOR_HEAVY: '#CCCCCC',
 
   /**
    * #F6F8FA

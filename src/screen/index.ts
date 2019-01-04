@@ -13,10 +13,12 @@ import {
   QHWPPapersInCategory,
   QHWPImageDetail,
 } from './qh-wallpaper';
+import SampleHome from './sample/sample-home';
 
 const HomeTabNavigator = createBottomTabNavigator({
   [ScreenID.AD_Wallpaper_Category]: ADWPCategory,
   [ScreenID.QH_Wallpaper_Category]: QHWPCategory,
+  [ScreenID.Sample_Home]: SampleHome,
 });
 
 const MainStack = createStackNavigator({
