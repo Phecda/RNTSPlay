@@ -1,26 +1,18 @@
 import React from 'react';
 import {
-  View,
   StyleSheet,
-  Text,
   Image,
   Dimensions,
   Button,
-  SectionList,
-  TouchableWithoutFeedback,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
 } from 'react-navigation';
 import { withMappedNavigationProps } from 'react-navigation-props-mapper';
-import { ADWallpaperAPI } from '../../api';
-import { FrameConstants, STYLE_SIZE, STYLE_COLOR } from '../../variable';
-import { ListSeperator } from '../../component/table-cell';
-import commonStyles from '../../variable/styles';
+import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import { saveRemoteImage } from '../../utility/image-utils';
 import Toast from '../../component/toast';
 import ImageViewerModal from '../../component/image-viewer-modal';

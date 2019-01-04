@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  ImageProps,
-  StyleSheet,
-  LayoutChangeEvent,
-  ImageURISource,
-} from 'react-native';
+import { Image, ImageProps, ImageURISource } from 'react-native';
 import Toast from './toast';
 
 interface Props extends ImageProps {

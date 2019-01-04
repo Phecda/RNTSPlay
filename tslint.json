@@ -17,6 +17,7 @@
     "no-empty": false,
     "no-console": {
       "severity": "warning"
-    }
+    },
+    "no-unused-variable": true
   }
 }

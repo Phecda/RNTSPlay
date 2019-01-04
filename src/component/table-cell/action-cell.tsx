@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  TouchableHighlight,
-  View,
-  Image,
-  Text,
-} from 'react-native';
+import { TouchableHighlight, View, Image, Text } from 'react-native';
 import { ActionCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
