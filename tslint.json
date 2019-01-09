@@ -18,6 +18,7 @@
     "no-console": {
       "severity": "warning"
     },
-    "no-unused-variable": true
+    "no-unused-variable": true,
+    "no-non-null-assertion": false
   }
 }

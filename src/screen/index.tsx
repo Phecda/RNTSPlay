@@ -4,7 +4,7 @@ import {
   createStackNavigator,
 } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
-import { ScreenID } from '../variable';
+import { ScreenID, STYLE_COLOR } from '../variable';
 import {
   ADWPCategory,
   ADWPImageDetail,
@@ -26,7 +26,11 @@ const HomeTabNavigator = createBottomTabNavigator(
   {
     defaultNavigationOptions: ({ navigation }) => {
       return {
-        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        tabBarIcon: ({
+          focused,
+          horizontal,
+          tintColor = STYLE_COLOR.THEME_BLUE,
+        }) => {
           const { routeName } = navigation.state;
           switch (routeName) {
             case ScreenID.AD_Wallpaper_Category:
