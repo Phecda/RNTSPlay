@@ -6,7 +6,7 @@ import {
 } from 'react-navigation';
 import StyleSheet from '../../utility/StyleSheet';
 import { QHWallpaperAPI } from '../../api';
-import Toast from '../../component/toast';
+import Toast from '../../component/Toast';
 import { ActionCell, ListSeparator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { ScreenID } from '../../variable';

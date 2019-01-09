@@ -20,7 +20,7 @@ import { FrameConstants, STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import { ListSeparator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { saveRemoteImage } from '../../utility/image-utils';
-import Toast from '../../component/toast';
+import Toast from '../../component/Toast';
 import ImageViewerModal from '../../component/image-viewer-modal';
 
 interface Prop {

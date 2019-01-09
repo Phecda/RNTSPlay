@@ -15,7 +15,7 @@ import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mappe
 import { QHWallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
 import { ScreenID, STYLE_SIZE } from '../../variable';
-import Toast from '../../component/toast';
+import Toast from '../../component/Toast';
 
 interface Prop {
   category: QHCategory;

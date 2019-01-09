@@ -14,7 +14,7 @@ import {
 import { withMappedNavigationProps } from 'react-navigation-props-mapper';
 import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import { saveRemoteImage } from '../../utility/image-utils';
-import Toast from '../../component/toast';
+import Toast from '../../component/Toast';
 import ImageViewerModal from '../../component/image-viewer-modal';
 import FullWidthImage from '../../component/full-width-image';
 
