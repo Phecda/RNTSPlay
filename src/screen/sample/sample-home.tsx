@@ -3,6 +3,7 @@ import { StyleSheet, SectionList, View, Text } from 'react-native';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
+  SafeAreaView,
 } from 'react-navigation';
 import {
   ActionCell,
@@ -10,7 +11,7 @@ import {
   ListSeparator,
 } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
-import { STYLE_SIZE } from '../../variable';
+import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import Toast from '../../component/toast';
 
 interface Prop {}
@@ -89,6 +90,29 @@ export default class SampleHome extends React.Component<
               },
             ],
           },
+          {
+            sectionHeaderText: 'Toast',
+            sectionFooterText: 'Section Footer',
+            data: [
+              {
+                title: 'Toast',
+                onPress: () => {
+                  Toast.showBottom('昨夜闲潭梦落花，可怜春半不还家');
+                },
+              },
+            ],
+          },
+          {
+            sectionHeaderText: 'Toast',
+            data: [
+              {
+                title: 'Toast',
+                onPress: () => {
+                  Toast.showBottom('昨夜闲潭梦落花，可怜春半不还家');
+                },
+              },
+            ],
+          },
         ]}
         keyExtractor={(_, index) => `${index}`}
         renderItem={({ item }) => {
@@ -96,23 +120,42 @@ export default class SampleHome extends React.Component<
           return <ActionCell {...item} />;
         }}
         ItemSeparatorComponent={() => <ListSeparator />}
-        SectionSeparatorComponent={() => (
-          <View style={{ height: STYLE_SIZE.SPACING_1 }}>
-            <Text>base</Text>
-          </View>
+        SectionSeparatorComponent={({ leadingItem, trailingItem, section }) => {
+          if (!leadingItem && trailingItem && section.sectionHeaderText) {
+            return (
+              <SafeAreaView
+                style={styles.sectionMargin}
+                forceInset={{ top: 'never', bottom: 'never' }}
+              >
+                <Text style={styles.sectionMarginText}>
+                  {section.sectionHeaderText}
+                </Text>
+              </SafeAreaView>
+            );
+          } else if (
+            leadingItem &&
+            !trailingItem &&
+            section.sectionFooterText
+          ) {
+            return (
+              <SafeAreaView
+                style={styles.sectionMargin}
+                forceInset={{ top: 'never', bottom: 'never' }}
+              >
+                <Text style={styles.sectionMarginText}>
+                  {section.sectionFooterText}
+                </Text>
+              </SafeAreaView>
+            );
+          }
+          return null;
+        }}
+        renderSectionHeader={() => (
+          <View style={{ height: STYLE_SIZE.SPACING_1 }} />
         )}
-        renderSectionHeader={({ section }) => {
-          if (section.sectionHeaderText) {
-            return <Text>{section.sectionHeaderText}</Text>;
-          }
-          return null;
-        }}
-        renderSectionFooter={({ section }) => {
-          if (section.sectionHeaderText) {
-            return <Text>{section.sectionHeaderText}</Text>;
-          }
-          return null;
-        }}
+        renderSectionFooter={() => (
+          <View style={{ height: STYLE_SIZE.SPACING_1 }} />
+        )}
         style={commonStyles.container}
       />
     );
@@ -121,4 +164,12 @@ export default class SampleHome extends React.Component<
 
 const styles = StyleSheet.create({
   container: {},
+  sectionMargin: {
+    padding: STYLE_SIZE.SPACING_HALF,
+    paddingHorizontal: STYLE_SIZE.SPACING_2,
+  },
+  sectionMarginText: {
+    fontSize: STYLE_SIZE.FONT_SECONDARY,
+    color: STYLE_COLOR.TEXT_SECONDARY,
+  },
 });
