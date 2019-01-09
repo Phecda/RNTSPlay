@@ -34,11 +34,13 @@ const HomeTabNavigator = createBottomTabNavigator(
           const { routeName } = navigation.state;
           switch (routeName) {
             case ScreenID.AD_Wallpaper_Category:
-              return <Feather name="sun" size={25} color={tintColor} />;
+              /* tslint:disable */
+              return <Feather name="sun" size={25} color={tintColor!} />;
             case ScreenID.QH_Wallpaper_Category:
-              return <Feather name="shield" size={25} color={tintColor} />;
+              return <Feather name="shield" size={25} color={tintColor!} />;
             case ScreenID.Sample_Home:
-              return <Feather name="list" size={25} color={tintColor} />;
+              return <Feather name="list" size={25} color={tintColor!} />;
+            /* tslint:enable */
             default:
               return null;
           }
