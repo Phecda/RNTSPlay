@@ -1,8 +1,9 @@
 import React from 'react';
-import { TouchableHighlight, View, Image, Text } from 'react-native';
+import { TouchableHighlight, Image, Text } from 'react-native';
 import { ActionCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
+import { SafeAreaView } from 'react-navigation';
 
 export default ({
   icon,
@@ -23,7 +24,10 @@ export default ({
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
     >
-      <View style={tableCellStyles.container}>
+      <SafeAreaView
+        style={tableCellStyles.container}
+        forceInset={{ bottom: 'never', top: 'never' }}
+      >
         {!!icon && (
           <Image
             source={icon}
@@ -50,7 +54,7 @@ export default ({
         {rightAngleVisible && (
           <Image source={require('../../assets/ico_arrow_r.png')} />
         )}
-      </View>
+      </SafeAreaView>
     </TouchableHighlight>
   );
 };

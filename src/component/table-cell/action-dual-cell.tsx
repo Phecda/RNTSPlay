@@ -3,6 +3,7 @@ import { TouchableHighlight, View, Image, Text } from 'react-native';
 import { ActionDualCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
+import { SafeAreaView } from 'react-navigation';
 
 export default ({
   icon,
@@ -24,7 +25,10 @@ export default ({
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
     >
-      <View style={[tableCellStyles.container, tableCellStyles.dualContainer]}>
+      <SafeAreaView
+        forceInset={{ bottom: 'never', top: 'never' }}
+        style={[tableCellStyles.container, tableCellStyles.dualContainer]}
+      >
         {!!icon && (
           <Image
             source={icon}
@@ -58,7 +62,7 @@ export default ({
         {rightAngleVisible && (
           <Image source={require('../../assets/ico_arrow_r.png')} />
         )}
-      </View>
+      </SafeAreaView>
     </TouchableHighlight>
   );
 };

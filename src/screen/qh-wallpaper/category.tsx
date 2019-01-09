@@ -7,7 +7,7 @@ import {
 import StyleSheet from '../../utility/StyleSheet';
 import { QHWallpaperAPI } from '../../api';
 import Toast from '../../component/toast';
-import { ActionCell } from '../../component/table-cell';
+import { ActionCell, ListSeparator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { ScreenID } from '../../variable';
 
@@ -84,6 +84,7 @@ export default class WPCategory extends React.Component<
             }}
           />
         )}
+        ItemSeparatorComponent={() => <ListSeparator />}
       />
     );
   }
