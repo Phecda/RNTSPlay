@@ -2,6 +2,9 @@ import * as React from 'react';
 import {
   createBottomTabNavigator,
   createStackNavigator,
+  NavigationScreenOptions,
+  NavigationScreenProps,
+  NavigationRouteConfigMap,
 } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import { ScreenID, STYLE_COLOR } from '../variable';
@@ -17,38 +20,61 @@ import {
 } from './qh-wallpaper';
 import SampleHome from './sample/sample-home';
 
-const HomeTabNavigator = createBottomTabNavigator(
-  {
-    [ScreenID.AD_Wallpaper_Category]: ADWPCategory,
-    [ScreenID.QH_Wallpaper_Category]: QHWPCategory,
-    [ScreenID.Sample_Home]: SampleHome,
+const tabRoutes = {
+  [ScreenID.AD_Wallpaper_Category]: {
+    component: ADWPCategory,
+    icon: (tintColor: string) => (
+      <Feather name="sun" size={25} color={tintColor} />
+    ),
+    headerTitle: '光点壁纸',
   },
-  {
-    defaultNavigationOptions: ({ navigation }) => {
-      return {
-        tabBarIcon: ({
-          focused,
-          horizontal,
-          tintColor = STYLE_COLOR.THEME_BLUE,
-        }) => {
-          const { routeName } = navigation.state;
-          switch (routeName) {
-            case ScreenID.AD_Wallpaper_Category:
-              /* tslint:disable */
-              return <Feather name="sun" size={25} color={tintColor!} />;
-            case ScreenID.QH_Wallpaper_Category:
-              return <Feather name="shield" size={25} color={tintColor!} />;
-            case ScreenID.Sample_Home:
-              return <Feather name="list" size={25} color={tintColor!} />;
-            /* tslint:enable */
-            default:
-              return null;
-          }
-        },
-      };
-    },
-  }
-);
+  [ScreenID.QH_Wallpaper_Category]: {
+    component: QHWPCategory,
+    icon: (tintColor: string) => (
+      <Feather name="shield" size={25} color={tintColor} />
+    ),
+    headerTitle: '360壁纸',
+  },
+  [ScreenID.Sample_Home]: {
+    component: SampleHome,
+    icon: (tintColor: string) => (
+      <Feather name="list" size={25} color={tintColor} />
+    ),
+    headerTitle: '样例',
+  },
+};
+
+const navigationRouteMap: NavigationRouteConfigMap = {};
+Object.keys(tabRoutes).forEach(key => {
+  navigationRouteMap[key] = tabRoutes[key].component;
+});
+
+const HomeTabNavigator = createBottomTabNavigator(navigationRouteMap, {
+  defaultNavigationOptions: ({ navigation }) => {
+    return {
+      tabBarIcon: ({
+        focused,
+        horizontal,
+        tintColor = STYLE_COLOR.THEME_BLUE,
+      }) => {
+        const { routeName } = navigation.state;
+        const route = tabRoutes[routeName];
+        return route ? route.icon(tintColor) : null;
+      },
+    };
+  },
+});
+
+HomeTabNavigator.navigationOptions = ({
+  navigation,
+}: NavigationScreenProps): NavigationScreenOptions => {
+  const { routes, index } = navigation.state;
+  const { routeName } = routes[index];
+  const route = tabRoutes[routeName];
+  return {
+    headerTitle: route ? route.headerTitle : '首页',
+  };
+};
 
 const MainStack = createStackNavigator({
   HomeTab: HomeTabNavigator,
