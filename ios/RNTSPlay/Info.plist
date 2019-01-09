@@ -42,7 +42,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>To add wallpapers to your photo library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To add wallpapers to your photo library</string>
+	<string>To add wallpapers to your photo library or to read photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

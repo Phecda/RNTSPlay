@@ -54,6 +54,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C477CE5021D1D9AF0092A751 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C477CE4F21D1D99D0092A751 /* libRCTCameraRoll.a */; };
 		C4D251B121E5FD1B00C632D2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C4D2518521E5FD1B00C632D2 /* logo.png */; };
+		C4D251F221E5FFF600C632D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4D251F421E5FFF600C632D2 /* InfoPlist.strings */; };
 		C69D4CDBE45347F188632A44 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D3B024F712D49E7A3E617CC /* libRNVectorIcons.a */; };
 		D0C90C111CB5454691654EC3 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8971A43850624FB99BB29CDD /* libRNFS.a */; };
 		DEB06694E9BC447BA3EE671F /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65CF52A488644963882E2026 /* AntDesign.ttf */; };
@@ -425,6 +426,8 @@
 		BFE4E6E92CC54B8FA40EFCE6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		C477CE4A21D1D99D0092A751 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		C4D2518521E5FD1B00C632D2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		C4D251F321E5FFF600C632D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4D251F521E6002100C632D2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CC7EE2B819FE4B828DF6E081 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		D256AC3A79A04488A8F56D96 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		F3414ACDF99D463DADD82315 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -581,6 +584,7 @@
 				C4D2518521E5FD1B00C632D2 /* logo.png */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				C4D251F421E5FFF600C632D2 /* InfoPlist.strings */,
 			);
 			name = RNTSPlay;
 			sourceTree = "<group>";
@@ -879,6 +883,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1285,6 +1290,7 @@
 				77F942E355394DC79DC9E6F2 /* FontAwesome.ttf in Resources */,
 				2375895F56314F68A8ADCA59 /* FontAwesome5_Brands.ttf in Resources */,
 				89E2842C960243109F27216E /* FontAwesome5_Regular.ttf in Resources */,
+				C4D251F221E5FFF600C632D2 /* InfoPlist.strings in Resources */,
 				1213EDBDB5014E31A2EFF6CA /* FontAwesome5_Solid.ttf in Resources */,
 				28B34817DC1C470C89643338 /* Foundation.ttf in Resources */,
 				3E207983A25F477A839825BF /* Ionicons.ttf in Resources */,
@@ -1402,6 +1408,15 @@
 			);
 			name = LaunchScreen.xib;
 			path = RNTSPlay;
+			sourceTree = "<group>";
+		};
+		C4D251F421E5FFF600C632D2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4D251F321E5FFF600C632D2 /* en */,
+				C4D251F521E6002100C632D2 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1685,6 +1700,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1738,6 +1754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

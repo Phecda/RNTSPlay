@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  RNTSPlay
+
+  Created by Jerry Su on 2019/1/9.
+  Copyright © 2019 Facebook. All rights reserved.
+*/
+"CFBundleDisplayName" = "训练场";
+"NSPhotoLibraryAddUsageDescription" = "向您的照片库添加照片";
+"NSPhotoLibraryUsageDescription" = "读取您的照片";
