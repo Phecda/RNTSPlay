@@ -83,32 +83,23 @@ export default class SampleHome extends React.Component<
             sectionHeaderText: 'Toast',
             data: [
               {
-                title: 'Toast',
+                title: 'Toast Bottom',
                 onPress: () => {
                   Toast.showBottom('昨夜闲潭梦落花，可怜春半不还家');
                 },
               },
-            ],
-          },
-          {
-            sectionHeaderText: 'Toast',
-            sectionFooterText: 'Section Footer',
-            data: [
               {
-                title: 'Toast',
+                title: 'Toast Center',
                 onPress: () => {
-                  Toast.showBottom('昨夜闲潭梦落花，可怜春半不还家');
+                  Toast.showMiddle('警告提示');
                 },
               },
-            ],
-          },
-          {
-            sectionHeaderText: 'Toast',
-            data: [
               {
-                title: 'Toast',
+                title: 'Toast Top',
                 onPress: () => {
-                  Toast.showBottom('昨夜闲潭梦落花，可怜春半不还家');
+                  Toast.showTop(
+                    'seifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常23134'
+                  );
                 },
               },
             ],

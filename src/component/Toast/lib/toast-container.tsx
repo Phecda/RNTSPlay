@@ -16,12 +16,6 @@ import {
 const TOAST_MAX_WIDTH = 0.8;
 const TOAST_ANIMATION_DURATION = 200;
 
-const positions = {
-  TOP: 20,
-  BOTTOM: -20,
-  CENTER: 0,
-};
-
 const durations = {
   LONG: 3500,
   SHORT: 2000,
@@ -144,6 +138,7 @@ class ToastContainer extends React.Component<
   ) {
     const { windowHeight, keyboardScreenY } = prevState;
     this._keyboardHeight = Math.max(windowHeight - keyboardScreenY, 0);
+    return null;
   }
 
   componentDidUpdate(prevProps: ToastOptions, prevState: ToastContainerState) {
@@ -303,4 +298,4 @@ class ToastContainer extends React.Component<
 }
 
 export default ToastContainer;
-export { positions, durations };
+export { durations };
