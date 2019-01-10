@@ -15,9 +15,9 @@ import {
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { ADWallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
-import { showActionSheet } from '../../utility/pop-view';
 import { ScreenID } from '../../variable';
 import Toast from '../../component/toast';
+import ActionSheet from '../../component/action-sheet';
 
 interface Prop {
   category?: ADWallPaperCategory;
@@ -122,12 +122,13 @@ export default class WPPapersInCategory extends React.Component<
   };
 
   _showOrderSelector = () => {
-    showActionSheet({
+    ActionSheet.show({
       title: '选择排序',
-      onSelect: index => {
-        this.setState({ orderIndex: index });
-      },
-      options: options.map(option => option.value),
+      options: options.map(opt => opt.value),
+    }).then(result => {
+      if (result !== 'cancelAction') {
+        this.setState({ orderIndex: result.selectedIndex });
+      }
     });
   };
 

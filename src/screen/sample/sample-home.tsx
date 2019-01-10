@@ -13,6 +13,7 @@ import {
 import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import Toast from '../../component/toast';
+import ActionSheet from '../../component/action-sheet';
 
 interface Prop {}
 
@@ -100,6 +101,27 @@ export default class SampleHome extends React.Component<
                   Toast.showTop(
                     'seifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常23134'
                   );
+                },
+              },
+            ],
+          },
+          {
+            sectionHeaderText: 'PopViews',
+            data: [
+              {
+                title: 'ActionSheet',
+                onPress: () => {
+                  ActionSheet.show({
+                    options: ['Apple', 'Google', 'Microsoft'],
+                    title: 'Companies',
+                    message: 'Pick a company you want to join',
+                  }).then(result => {
+                    if (result === 'cancelAction') {
+                      Toast.showBottom(result);
+                    } else {
+                      Toast.showBottom(result.selectedText);
+                    }
+                  });
                 },
               },
             ],

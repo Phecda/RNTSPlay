@@ -6,7 +6,7 @@ declare module 'react-native-dialogs' {
     | 'actionPositive'
     | 'actionSelect';
 
-  type ListItem = { label: string } | { label: string; id: any } | {};
+  interface ListItem { label: string; id: any }
 
   type ListType = 'listCheckbox' | 'listPlain' | 'listRadio';
 
@@ -44,7 +44,7 @@ declare module 'react-native-dialogs' {
     neutralIsClear?: boolean;
     selectedId?: any;
     selectedIds?: any[];
-    type?: string;
+    type?: ListType;
     widgetColor?: string;
   }
 
