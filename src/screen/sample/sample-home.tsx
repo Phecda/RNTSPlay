@@ -12,7 +12,7 @@ import {
 } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
-import Toast from '../../component/Toast';
+import Toast from '../../component/toast';
 
 interface Prop {}
 

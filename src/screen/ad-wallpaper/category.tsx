@@ -13,7 +13,7 @@ import { NavigationScreenProps } from 'react-navigation';
 import { ADWallpaperAPI } from '../../api';
 import { ScreenID, STYLE_SIZE } from '../../variable';
 import commonStyles from '../../variable/styles';
-import Toast from '../../component/Toast';
+import Toast from '../../component/toast';
 
 interface Prop {}
 
