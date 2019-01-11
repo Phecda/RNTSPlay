@@ -47,7 +47,7 @@ const HomeTabNavigator = createBottomTabNavigator(navigationRouteMap, {
       }) => {
         const { routeName } = navigation.state;
         const route = tabRoutes[routeName];
-        return route ? route.icon(tintColor) : null;
+        return route ? route.icon(tintColor!) : null;
       },
     };
   },
