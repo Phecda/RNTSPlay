@@ -13,11 +13,6 @@ import {
   ADWPImageDetail,
   ADWPPapersInCategory,
 } from './ad-wallpaper';
-import {
-  QHWPCategory,
-  QHWPPapersInCategory,
-  QHWPImageDetail,
-} from './qh-wallpaper';
 import SampleHome from './sample/sample-home';
 
 const tabRoutes = {
@@ -27,13 +22,6 @@ const tabRoutes = {
       <Feather name="sun" size={25} color={tintColor} />
     ),
     headerTitle: '光点壁纸',
-  },
-  [ScreenID.QH_Wallpaper_Category]: {
-    component: QHWPCategory,
-    icon: (tintColor: string) => (
-      <Feather name="shield" size={25} color={tintColor} />
-    ),
-    headerTitle: '360壁纸',
   },
   [ScreenID.Sample_Home]: {
     component: SampleHome,
@@ -80,8 +68,6 @@ const MainStack = createStackNavigator({
   HomeTab: HomeTabNavigator,
   [ScreenID.AD_Wallpaper_Detail]: ADWPImageDetail,
   [ScreenID.AD_Wallpaper_Papers]: ADWPPapersInCategory,
-  [ScreenID.QH_Wallpaper_Papers]: QHWPPapersInCategory,
-  [ScreenID.QH_Wallpaper_Detail]: QHWPImageDetail,
 });
 
 export default MainStack;

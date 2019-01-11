@@ -7,7 +7,7 @@ interface ActionSheetOptions {
   message?: string;
   /**
    * On iOS this indicates whether the action sheet has a cancel button.
-   * On Android this indicates whether the sheet can be canceled by tap backdrop or back button
+   * On Android this indicates whether the sheet can be canceled by tapping backdrop or back button
    */
   cancelable?: boolean;
   cancelText?: string;
@@ -60,26 +60,30 @@ export default class ActionSheet {
         DialogAndroid.showPicker(title || null, message || null, {
           items,
           cancelable,
-          negativeText: cancelable ? cancelText : undefined,
           positiveText: null,
-        }).then(result => {
-          if (
-            result.action === DialogAndroid.actionDismiss ||
-            result.action === DialogAndroid.actionNegative
-          ) {
-            resolve('cancelAction');
-          } else if (
-            result.action === DialogAndroid.actionSelect &&
-            'selectedItem' in result
-          ) {
-            resolve({
-              selectedText: result.selectedItem.label,
-              selectedIndex: result.selectedItem.id as number,
-            });
-          } else {
-            reject('Unhandled');
-          }
-        });
+          type: message ? 'listRadio' : 'listPlain',
+        })
+          .then(result => {
+            if (
+              result.action === DialogAndroid.actionDismiss ||
+              result.action === DialogAndroid.actionNegative
+            ) {
+              resolve('cancelAction');
+            } else if (
+              result.action === DialogAndroid.actionSelect &&
+              'selectedItem' in result
+            ) {
+              resolve({
+                selectedText: result.selectedItem.label,
+                selectedIndex: result.selectedItem.id as number,
+              });
+            } else {
+              reject('Unhandled');
+            }
+          })
+          .catch(err => {
+            reject(err);
+          });
       });
     } else {
       throw Error('Platform Error');
