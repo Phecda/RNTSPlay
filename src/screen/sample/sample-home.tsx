@@ -14,6 +14,7 @@ import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import Toast from '../../component/toast';
 import ActionSheet from '../../component/action-sheet';
+import Prompt from '../../component/alert-prompt';
 
 interface Prop {}
 
@@ -115,13 +116,34 @@ export default class SampleHome extends React.Component<
                     options: ['Apple', 'Google', 'Microsoft'],
                     title: 'Companies',
                     message: 'Pick a company you want to join',
-                  }).then(result => {
-                    if (result === 'cancelAction') {
-                      Toast.showBottom(result);
-                    } else {
-                      Toast.showBottom(result.selectedText);
-                    }
-                  });
+                  })
+                    .then(result => {
+                      if (result === 'cancelAction') {
+                        Toast.showBottom(result);
+                      } else {
+                        Toast.showBottom(result.selectedText);
+                      }
+                    })
+                    .catch(err => {
+                      console.log(err);
+                    });
+                },
+              },
+              {
+                title: 'Prompt',
+                onPress: () => {
+                  Prompt.show({
+                    title: 'Hi',
+                    message: 'hello my friend',
+                    keyboardType: 'url',
+                    confirmText: '对了',
+                  })
+                    .then(result => {
+                      console.log(result);
+                    })
+                    .catch(err => {
+                      console.log(err);
+                    });
                 },
               },
             ],

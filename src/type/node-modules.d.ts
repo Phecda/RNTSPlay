@@ -70,16 +70,28 @@ declare module 'react-native-dialogs' {
     static listPlain: 'listPlain';
     static listRadio: 'listRadio';
     static listCheckbox: 'listCheckbox';
+
     static actionDismiss: 'actionDismiss';
     static actionNegative: 'actionNegative';
     static actionNeutral: 'actionNeutral';
     static actionPositive: 'actionPositive';
     static actionSelect: 'actionSelect';
+
     static progressHorizontal: 'progressHorizontal';
 
     static defaults: {
       positiveText: 'OK';
     };
+
+    static assignDefaults(defaults: Partial<OptionsCommon>): void;
+
+    static prompt(title: string | null, content: string | null, options: OptionsPrompt): Promise<
+      | { action: typeof DialogAndroid.actionNegative | typeof DialogAndroid.actionNeutral | typeof DialogAndroid.actionDismiss }
+      | { action: typeof DialogAndroid.actionNegative | typeof DialogAndroid.actionNeutral; checked: boolean }
+      | { action: typeof DialogAndroid.actionPositive; text: string }
+      | { action: typeof DialogAndroid.actionPositive; text: string; checked: boolean }
+    >;
+
     static showPicker(
       title: string | null,
       content: string | null,
