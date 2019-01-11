@@ -6,7 +6,10 @@ declare module 'react-native-dialogs' {
     | 'actionPositive'
     | 'actionSelect';
 
-  interface ListItem { label: string; id: any }
+  interface ListItem {
+    label: string;
+    id: any;
+  }
 
   type ListType = 'listCheckbox' | 'listPlain' | 'listRadio';
 
