@@ -34,8 +34,8 @@ interface State {
 type Order = 'hot' | 'new';
 
 const options = [
-  { key: 'hot', value: '最热门' },
   { key: 'new', value: '最新' },
+  { key: 'hot', value: '最热门' },
 ];
 
 @withMappedNavigationAndConfigProps()
@@ -46,7 +46,7 @@ export default class WPPapersInCategory extends React.Component<
   static navigationOptions = ({
     category,
     navigation,
-  }: any): NavigationScreenOptions => ({
+  }: Prop & NavigationScreenProps): NavigationScreenOptions => ({
     title: category ? category.name : '全部类别',
     headerRight: (
       <Button

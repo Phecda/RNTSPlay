@@ -12,8 +12,10 @@ import {
   ADWPCategory,
   ADWPImageDetail,
   ADWPPapersInCategory,
+  ADWPSearch,
 } from './ad-wallpaper';
 import SampleHome from './sample/sample-home';
+import { Button } from 'react-native';
 
 const tabRoutes = {
   [ScreenID.AD_Wallpaper_Category]: {
@@ -59,15 +61,33 @@ HomeTabNavigator.navigationOptions = ({
   const { routes, index } = navigation.state;
   const { routeName } = routes[index];
   const route = tabRoutes[routeName];
-  return {
-    headerTitle: route ? route.headerTitle : '首页',
-  };
+
+  const options: NavigationScreenOptions = {};
+  options.headerTitle = route.headerTitle;
+
+  if (routeName === ScreenID.AD_Wallpaper_Category) {
+    options.headerRight = (
+      <Button
+        title="搜索"
+        onPress={() => {
+          navigation.navigate(ScreenID.AD_Wallpaper_Search);
+        }}
+      />
+    );
+  }
+  return options;
 };
 
-const MainStack = createStackNavigator({
-  HomeTab: HomeTabNavigator,
-  [ScreenID.AD_Wallpaper_Detail]: ADWPImageDetail,
-  [ScreenID.AD_Wallpaper_Papers]: ADWPPapersInCategory,
-});
+const MainStack = createStackNavigator(
+  {
+    HomeTab: HomeTabNavigator,
+    [ScreenID.AD_Wallpaper_Detail]: ADWPImageDetail,
+    [ScreenID.AD_Wallpaper_Papers]: ADWPPapersInCategory,
+    [ScreenID.AD_Wallpaper_Search]: ADWPSearch,
+  },
+  {
+    headerTransitionPreset: 'uikit',
+  }
+);
 
 export default MainStack;

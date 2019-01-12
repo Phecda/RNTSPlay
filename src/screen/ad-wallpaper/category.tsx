@@ -9,7 +9,10 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
-import { NavigationScreenProps } from 'react-navigation';
+import {
+  NavigationScreenProps,
+  NavigationScreenOptions,
+} from 'react-navigation';
 import { ADWallpaperAPI } from '../../api';
 import { ScreenID, STYLE_SIZE } from '../../variable';
 import commonStyles from '../../variable/styles';
@@ -22,15 +25,19 @@ interface State {
   loading: boolean;
 }
 
+const navigationParamKey = {
+  onSearch: 'onSearch',
+};
+
 export default class WPCategory extends React.Component<
   Prop & NavigationScreenProps,
   State
 > {
-  static navigationOptions = ({ navigation }: any) => {
-    return {
-      title: '光点',
-    };
-  };
+  static navigationOptions = ({
+    navigation,
+  }: NavigationScreenProps): NavigationScreenOptions => ({
+    title: '光点',
+  });
 
   state: State = {
     categories: [],
@@ -40,7 +47,9 @@ export default class WPCategory extends React.Component<
 
   componentDidMount() {
     this.mounted = true;
-    this.props.navigation.setParams({ pushAll: this._pushPapers });
+    this.props.navigation.setParams({
+      [navigationParamKey.onSearch]: this._pushSearch,
+    });
     this._requestCategoryList();
   }
 
@@ -75,6 +84,10 @@ export default class WPCategory extends React.Component<
     this.props.navigation.navigate(ScreenID.AD_Wallpaper_Papers, {
       category,
     });
+  };
+
+  _pushSearch = () => {
+    this.props.navigation.navigate(ScreenID.AD_Wallpaper_Search);
   };
 
   render() {

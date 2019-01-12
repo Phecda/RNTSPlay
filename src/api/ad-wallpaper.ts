@@ -83,5 +83,5 @@ export function searchWallpaper(
   )}?limit=${limit}&adult=${Number(
     adult
   )}&first=${first}&skip=${offset}&order=${order}`;
-  return fetchData<{}>(url);
+  return fetchData<{ vertical: ADWallPaper[] }>(url);
 }
