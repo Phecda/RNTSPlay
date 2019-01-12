@@ -19,6 +19,7 @@
       "severity": "warning"
     },
     "no-non-null-assertion": false,
-    "no-unused-variable": true
+    "no-unused-variable": false,
+    "no-floating-promises": false
   }
 }
