@@ -95,7 +95,7 @@ export default class WPImageDetail extends React.Component<
         }
       },
       err => {
-        Toast.showBottom(err);
+        Toast.showBottom(err.message);
       }
     );
   };
@@ -115,7 +115,7 @@ export default class WPImageDetail extends React.Component<
   render() {
     const { image } = this.props;
     const { comments, originSize, hotComments, modalVisible } = this.state;
-    const { width, height } = Dimensions.get('window');
+    const { width } = Dimensions.get('window');
     const sections = [];
     if (hotComments.length) {
       sections.push({
