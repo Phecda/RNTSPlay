@@ -21,6 +21,7 @@ import ActionSheet from '../../component/action-sheet';
 
 interface Prop {
   category?: ADWallPaperCategory;
+  presetOrder?: Order;
 }
 
 interface State {
@@ -61,7 +62,9 @@ export default class WPPapersInCategory extends React.Component<
     image: null,
     loading: false,
     refreshing: false,
-    orderIndex: 0,
+    orderIndex: this.props.presetOrder
+      ? options.findIndex(item => item.key === this.props.presetOrder)
+      : 0,
   };
   mounted: boolean = false;
 

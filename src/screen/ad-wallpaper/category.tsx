@@ -33,12 +33,6 @@ export default class WPCategory extends React.Component<
   Prop & NavigationScreenProps,
   State
 > {
-  static navigationOptions = ({
-    navigation,
-  }: NavigationScreenProps): NavigationScreenOptions => ({
-    title: '光点',
-  });
-
   state: State = {
     categories: [],
     loading: false,
@@ -104,11 +98,6 @@ export default class WPCategory extends React.Component<
         onRefresh={this._requestCategoryList}
         keyExtractor={item => item.id}
         numColumns={3}
-        ListHeaderComponent={
-          <View>
-            <Button onPress={() => this._pushPapers()} title="全部壁纸" />
-          </View>
-        }
         renderItem={({ item }) => {
           return (
             <TouchableOpacity

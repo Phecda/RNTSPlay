@@ -13,13 +13,14 @@ import {
   ADWPImageDetail,
   ADWPPapersInCategory,
   ADWPSearch,
+  ADWPHome,
 } from './ad-wallpaper';
 import SampleHome from './sample/sample-home';
 import { Button } from 'react-native';
 
 const tabRoutes = {
-  [ScreenID.AD_Wallpaper_Category]: {
-    component: ADWPCategory,
+  [ScreenID.AD_Wallpaper_Home]: {
+    component: ADWPHome,
     icon: (tintColor: string) => (
       <Feather name="sun" size={25} color={tintColor} />
     ),
@@ -65,15 +66,8 @@ HomeTabNavigator.navigationOptions = ({
   const options: NavigationScreenOptions = {};
   options.headerTitle = route.headerTitle;
 
-  if (routeName === ScreenID.AD_Wallpaper_Category) {
-    options.headerRight = (
-      <Button
-        title="搜索"
-        onPress={() => {
-          navigation.navigate(ScreenID.AD_Wallpaper_Search);
-        }}
-      />
-    );
+  if (routeName === ScreenID.AD_Wallpaper_Home) {
+    options.header = null;
   }
   return options;
 };
