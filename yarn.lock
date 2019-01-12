@@ -3483,6 +3483,10 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash.merge@^4.6.1:
+  version "4.6.1"
+  resolved "http://registry.npm.taobao.org/lodash.merge/download/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
+
 lodash.pad@^4.1.0:
   version "4.5.1"
   resolved "http://registry.npm.taobao.org/lodash.pad/download/lodash.pad-4.5.1.tgz#4330949a833a7c8da22cc20f6a26c4d59debba70"
@@ -3502,6 +3506,10 @@ lodash.sortby@^4.7.0:
 lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "http://registry.npm.taobao.org/lodash.throttle/download/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+
+lodash.times@^4.3.2:
+  version "4.3.2"
+  resolved "http://registry.npm.taobao.org/lodash.times/download/lodash.times-4.3.2.tgz#3e1f2565c431754d54ab57f2ed1741939285ca1d"
 
 lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.11"
@@ -4178,6 +4186,10 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+opencollective-postinstall@^2.0.0:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/opencollective-postinstall/download/opencollective-postinstall-2.0.1.tgz#798e83e168f7b91949061c2683f762af747f17cc"
+
 opn@^3.0.2:
   version "3.0.3"
   resolved "http://registry.npm.taobao.org/opn/download/opn-3.0.3.tgz#b6d99e7399f78d65c3baaffef1fb288e9b85243a"
@@ -4595,9 +4607,18 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-native-dialogs@^1.0.2:
+"react-native-dialogs@git://github.com/Phecda/react-native-dialogs":
   version "1.0.2"
-  resolved "http://registry.npm.taobao.org/react-native-dialogs/download/react-native-dialogs-1.0.2.tgz#d16d68cecbd57f74904fb2d58fd846622d5fec9a"
+  resolved "git://github.com/Phecda/react-native-dialogs#50231b543d5a786f6d02e65ccda9e98d6a0f2ecd"
+
+react-native-elements@^1.0.0-beta7:
+  version "1.0.0-beta7"
+  resolved "http://registry.npm.taobao.org/react-native-elements/download/react-native-elements-1.0.0-beta7.tgz#d732affc905079033a8b53343587f7c1dbc59834"
+  dependencies:
+    lodash.merge "^4.6.1"
+    lodash.times "^4.3.2"
+    opencollective-postinstall "^2.0.0"
+    prop-types "^15.5.8"
 
 react-native-fs@^2.13.3:
   version "2.13.3"

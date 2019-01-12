@@ -13,6 +13,16 @@ declare module 'react-native-dialogs' {
 
   type ListType = 'listCheckbox' | 'listPlain' | 'listRadio';
 
+  export type KeyboardType =
+    | 'numeric'
+    | 'number-pad'
+    | 'numeric-password'
+    | 'email-address'
+    | 'password'
+    | 'phone-pad'
+    | 'decimal-pad'
+    | 'url';
+
   interface OptionsCommon {
     cancelable?: boolean;
     content?: string;
@@ -52,14 +62,7 @@ declare module 'react-native-dialogs' {
   }
 
   interface OptionsPrompt extends OptionsCommon {
-    keyboardType?:
-      | 'numeric'
-      | 'numbers-and-punctuation'
-      | 'numeric-password'
-      | 'email-address'
-      | 'password'
-      | 'phone-pad'
-      | 'decimal-pad';
+    keyboardType?: KeyboardType;
     defaultValue?: string;
     placeholder?: string;
     allowEmptyInput?: boolean;
@@ -85,11 +88,29 @@ declare module 'react-native-dialogs' {
 
     static assignDefaults(defaults: Partial<OptionsCommon>): void;
 
-    static prompt(title: string | null, content: string | null, options: OptionsPrompt): Promise<
-      | { action: typeof DialogAndroid.actionNegative | typeof DialogAndroid.actionNeutral | typeof DialogAndroid.actionDismiss }
-      | { action: typeof DialogAndroid.actionNegative | typeof DialogAndroid.actionNeutral; checked: boolean }
+    static prompt(
+      title: string | null,
+      content: string | null,
+      options: OptionsPrompt
+    ): Promise<
+      | {
+          action:
+            | typeof DialogAndroid.actionNegative
+            | typeof DialogAndroid.actionNeutral
+            | typeof DialogAndroid.actionDismiss;
+        }
+      | {
+          action:
+            | typeof DialogAndroid.actionNegative
+            | typeof DialogAndroid.actionNeutral;
+          checked: boolean;
+        }
       | { action: typeof DialogAndroid.actionPositive; text: string }
-      | { action: typeof DialogAndroid.actionPositive; text: string; checked: boolean }
+      | {
+          action: typeof DialogAndroid.actionPositive;
+          text: string;
+          checked: boolean;
+        }
     >;
 
     static showPicker(

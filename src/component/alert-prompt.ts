@@ -6,7 +6,14 @@ import {
   AlertIOSButton,
   AlertType,
 } from 'react-native';
-import DialogAndroid from 'react-native-dialogs';
+import DialogAndroid, {
+  KeyboardType as KeyboardTypeAndroid,
+} from 'react-native-dialogs';
+
+export type PromptKeyboardType =
+  | KeyboardType
+  | KeyboardTypeIOS
+  | KeyboardTypeAndroid;
 
 interface PromptOptions {
   title: string;
@@ -14,7 +21,7 @@ interface PromptOptions {
   /**
    * @platform iOS
    */
-  keyboardType?: KeyboardType | KeyboardTypeIOS;
+  keyboardType?: PromptKeyboardType;
   type?: AlertType;
   cancelText?: string;
   confirmText?: string;
@@ -76,7 +83,7 @@ export default class Prompt {
           callbackOrButtons,
           type,
           defaultValue,
-          keyboardType
+          keyboardType as KeyboardType | KeyboardTypeIOS
         );
       });
     } else if (Platform.OS === 'android') {
@@ -92,6 +99,7 @@ export default class Prompt {
           placeholder,
           maxLength,
           minLength,
+          keyboardType: keyboardType as KeyboardTypeAndroid,
         })
           .then(result => {
             if (result.action === 'actionPositive') {

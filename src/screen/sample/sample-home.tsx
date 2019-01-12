@@ -14,11 +14,13 @@ import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import Toast from '../../component/toast';
 import ActionSheet from '../../component/action-sheet';
-import Prompt from '../../component/alert-prompt';
+import Prompt, { PromptKeyboardType } from '../../component/alert-prompt';
 
 interface Prop {}
 
-interface State {}
+interface State {
+  promptKeyboardType: string;
+}
 
 export default class SampleHome extends React.Component<
   Prop & NavigationScreenProps,
@@ -27,7 +29,9 @@ export default class SampleHome extends React.Component<
   static navigationOptions: NavigationScreenOptions = {
     title: '样例',
   };
-  state: State = {};
+  state: State = {
+    promptKeyboardType: '',
+  };
   mounted: boolean = false;
 
   componentDidMount() {
@@ -111,21 +115,33 @@ export default class SampleHome extends React.Component<
             data: [
               {
                 title: 'ActionSheet',
+                detailText: this.state.promptKeyboardType,
                 onPress: () => {
                   ActionSheet.show({
-                    options: ['Apple', 'Google', 'Microsoft'],
-                    title: 'Companies',
-                    message: 'Pick a company you want to join',
+                    options: [
+                      'numeric',
+                      'number-pad',
+                      'phone-pad',
+                      'decimal-pad',
+                      'numeric-password',
+                      'email-address',
+                      'password',
+                      'url',
+                      'balba',
+                    ],
+                    title: 'PromptTypes',
                   })
                     .then(result => {
                       if (result === 'cancelAction') {
                         Toast.showBottom(result);
                       } else {
-                        Toast.showBottom(result.selectedText);
+                        this.setState({
+                          promptKeyboardType: result.selectedText,
+                        });
                       }
                     })
                     .catch(err => {
-                      console.log(err);
+                      Toast.showBottom(err.message);
                     });
                 },
               },
@@ -135,14 +151,15 @@ export default class SampleHome extends React.Component<
                   Prompt.show({
                     title: 'Hi',
                     message: 'hello my friend',
-                    keyboardType: 'url',
+                    keyboardType: this.state
+                      .promptKeyboardType as PromptKeyboardType,
                     confirmText: '对了',
                   })
                     .then(result => {
-                      console.log(result);
+                      Toast.showBottom(result.message || '');
                     })
                     .catch(err => {
-                      console.log(err);
+                      Toast.showBottom(err.message);
                     });
                 },
               },
