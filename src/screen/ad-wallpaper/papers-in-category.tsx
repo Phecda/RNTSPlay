@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import {
   NavigationScreenProps,
@@ -18,6 +19,7 @@ import commonStyles from '../../variable/styles';
 import { ScreenID } from '../../variable';
 import Toast from '../../component/toast';
 import ActionSheet from '../../component/action-sheet';
+import { IconNavButton } from '../../component/navigation-button';
 
 interface Prop {
   category?: ADWallPaperCategory;
@@ -50,9 +52,10 @@ export default class WPPapersInCategory extends React.Component<
   }: Prop & NavigationScreenProps): NavigationScreenOptions => ({
     title: category ? category.name : '全部类别',
     headerRight: (
-      <Button
+      <IconNavButton
+        name={Platform.OS === 'ios' ? 'ios-more' : 'md-more'}
+        type="ionicon"
         onPress={navigation.getParam('showOrderSelector', () => {})}
-        title={navigation.getParam('order', options[0].value)}
       />
     ),
   });

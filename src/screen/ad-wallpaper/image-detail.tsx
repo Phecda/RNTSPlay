@@ -8,6 +8,7 @@ import {
   Button,
   SectionList,
   TouchableWithoutFeedback,
+  Platform,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
@@ -22,6 +23,7 @@ import commonStyles from '../../variable/styles';
 import { saveRemoteImage } from '../../utility/image-utils';
 import Toast from '../../component/toast';
 import ImageViewerModal from '../../component/image-viewer-modal';
+import { IconNavButton } from '../../component/navigation-button';
 
 interface Prop {
   image: ADWallPaper;
@@ -47,7 +49,11 @@ export default class WPImageDetail extends React.Component<
   }) => ({
     title: '壁纸',
     headerRight: (
-      <Button title="保存" onPress={navigation.getParam('onSave', () => {})} />
+      <IconNavButton
+        type="ionicon"
+        name={Platform.OS === 'ios' ? 'ios-download' : 'md-download'}
+        onPress={navigation.getParam('onSave', () => {})}
+      />
     ),
   });
   state: State = {

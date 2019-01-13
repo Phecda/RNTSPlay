@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalProps, View, StatusBar } from 'react-native';
+import { Modal, ModalProps, View, StatusBar, Platform } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 interface ImageViewerModalProps extends ModalProps {
@@ -38,7 +38,9 @@ export default class ImageViewerModal extends React.Component<
     this.setState({
       barVisible: willTopBarVisible,
     });
-    StatusBar.setHidden(!willTopBarVisible, 'fade');
+    if (Platform.OS === 'ios') {
+      StatusBar.setHidden(!willTopBarVisible, 'fade');
+    }
   };
 
   render() {

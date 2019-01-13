@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Button, Animated } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Button,
+  Animated,
+  StatusBar,
+  Platform,
+} from 'react-native';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
@@ -12,7 +20,13 @@ import WPCategory from './category';
 import commonStyles from '../../variable/styles';
 import WPPapersInCategory from './papers-in-category';
 import StyleSheet from '../../utility/StyleSheet';
-import { FrameConstants, ScreenID, STYLE_SIZE } from '../../variable';
+import {
+  FrameConstants,
+  ScreenID,
+  STYLE_SIZE,
+  STYLE_COLOR,
+} from '../../variable';
+import { IconNavButton } from '../../component/navigation-button';
 
 interface Props {}
 
@@ -32,6 +46,10 @@ export default class WPHome extends React.Component<
   render() {
     return (
       <View style={commonStyles.container}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={STYLE_COLOR.CONTAINER_BACKGROUND}
+        />
         <ScrollableTabView
           renderTabBar={({
             goToPage,
@@ -87,8 +105,9 @@ export default class WPHome extends React.Component<
                     alignItems: 'flex-end',
                   }}
                 >
-                  <Button
-                    title="搜索"
+                  <IconNavButton
+                    type="ionicon"
+                    name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'}
                     onPress={() => {
                       this.props.navigation.navigate(
                         ScreenID.AD_Wallpaper_Search
@@ -113,6 +132,8 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND,
+    elevation: 4,
   },
   tabContainer: {
     height: FrameConstants.navBarHeight,
@@ -129,9 +150,10 @@ const styles = StyleSheet.create({
     bottom: STYLE_SIZE.SPACING_HALF,
     left: 0,
     height: 4,
-    backgroundColor: 'black',
+    backgroundColor: STYLE_COLOR.THEME_COLOR,
   },
   tabTitle: {
     fontSize: 18,
+    color: STYLE_COLOR.TEXT_MAIN,
   },
 });

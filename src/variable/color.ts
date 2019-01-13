@@ -38,17 +38,13 @@ export default {
   CELL_UNDERLAY: '#D8D9DA',
 
   /**
-   * #4D74AB
+   * rgb(63,81,276)
    */
-  THEME_BLUE: '#4D74AB',
-  /**
-   * #FF695C
-   */
-  THEME_ORANGE: '#FF695C',
+  THEME_COLOR: 'rgb(63,81,276)',
   /**
    * #4D74AB88
    */
-  THEME_BLUE_DISABLED: '#4D74AB88',
+  THEME_COLOR_LIGHT: 'rgb(101,116,192)',
   /**
    * #FFFFFF
    */

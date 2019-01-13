@@ -1,14 +1,21 @@
 import React from 'react';
-import { FlatList, Dimensions, TouchableOpacity, Image } from 'react-native';
+import {
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  View,
+} from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import StyleSheet from '../../utility/StyleSheet';
-import { ScreenID } from '../../variable';
+import { ScreenID, STYLE_COLOR } from '../../variable';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
 } from 'react-navigation';
 import { ADWallpaperAPI } from '../../api';
 import Toast from '../../component/toast';
+import commonStyles from '../../variable/styles';
 
 interface Props {}
 
@@ -28,6 +35,7 @@ export default class WPSearch extends React.Component<
     navigation,
   }: NavigationScreenProps): NavigationScreenOptions => ({
     headerTitle: '搜索',
+    headerStyle: { borderBottomColor: 'transparent', elevation: 0 },
   });
 
   state: State = {
@@ -82,47 +90,54 @@ export default class WPSearch extends React.Component<
     const { width } = Dimensions.get('window');
     const imgSize = width / 3;
     return (
-      <FlatList
-        numColumns={3}
-        onEndReached={() => this._requestData(false)}
-        data={wallpapers}
-        keyExtractor={(item, index) => item.id + index.toString()}
-        stickyHeaderIndices={[0]}
-        ListHeaderComponent={
-          <SearchBar
-            platform={'default'}
-            lightTheme={true}
-            inputStyle={{ fontSize: 16 }}
-            cancelButtonProps={{ title: '取消' }}
-            returnKeyType="search"
-            defaultValue={searchText}
-            showLoading={refreshing}
-            autoFocus={true}
-            onChangeText={text => {
-              this.setState({ searchText: text });
-            }}
-            onSubmitEditing={() => this._requestData(true)}
-          />
-        }
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              style={{ width: imgSize, height: imgSize * 1.5 }}
-              activeOpacity={0.7}
-              onPress={() => {
-                this.props.navigation.navigate(ScreenID.AD_Wallpaper_Detail, {
-                  image: item,
-                });
-              }}
-            >
-              <Image
+      <View style={commonStyles.container}>
+        <SearchBar
+          platform={'default'}
+          containerStyle={{
+            borderTopWidth: 0,
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND,
+            elevation: 4,
+          }}
+          inputContainerStyle={{ backgroundColor: 'rgb(227,227,230)' }}
+          lightTheme={true}
+          inputStyle={{ fontSize: 16, color: STYLE_COLOR.TEXT_MAIN }}
+          cancelButtonProps={{ title: '取消' }}
+          returnKeyType="search"
+          defaultValue={searchText}
+          showLoading={refreshing}
+          autoFocus={true}
+          onChangeText={text => {
+            this.setState({ searchText: text });
+          }}
+          onSubmitEditing={() => this._requestData(true)}
+        />
+        <FlatList
+          numColumns={3}
+          onEndReached={() => this._requestData(false)}
+          data={wallpapers}
+          style={{ elevation: 4 }}
+          keyExtractor={(item, index) => item.id + index.toString()}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
                 style={{ width: imgSize, height: imgSize * 1.5 }}
-                source={{ uri: item.thumb }}
-              />
-            </TouchableOpacity>
-          );
-        }}
-      />
+                activeOpacity={0.7}
+                onPress={() => {
+                  this.props.navigation.navigate(ScreenID.AD_Wallpaper_Detail, {
+                    image: item,
+                  });
+                }}
+              >
+                <Image
+                  style={{ width: imgSize, height: imgSize * 1.5 }}
+                  source={{ uri: item.thumb }}
+                />
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
     );
   }
 }

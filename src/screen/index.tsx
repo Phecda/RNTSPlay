@@ -43,16 +43,15 @@ Object.keys(tabRoutes).forEach(key => {
 const HomeTabNavigator = createBottomTabNavigator(navigationRouteMap, {
   defaultNavigationOptions: ({ navigation }) => {
     return {
-      tabBarIcon: ({
-        focused,
-        horizontal,
-        tintColor = STYLE_COLOR.THEME_BLUE,
-      }) => {
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         const route = tabRoutes[routeName];
         return route ? route.icon(tintColor!) : null;
       },
     };
+  },
+  tabBarOptions: {
+    activeTintColor: STYLE_COLOR.THEME_COLOR,
   },
 });
 
@@ -81,6 +80,12 @@ const MainStack = createStackNavigator(
   },
   {
     headerTransitionPreset: 'uikit',
+    defaultNavigationOptions: {
+      headerTintColor: STYLE_COLOR.TEXT_MAIN,
+      headerStyle: {
+        backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND,
+      },
+    },
   }
 );
 
