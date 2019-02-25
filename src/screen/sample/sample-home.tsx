@@ -13,8 +13,6 @@ import {
 import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
 import Toast from '../../component/toast';
-import ActionSheet from '../../component/action-sheet';
-import Prompt, { PromptKeyboardType } from '../../component/alert-prompt';
 
 interface Prop {}
 
@@ -106,61 +104,6 @@ export default class SampleHome extends React.Component<
                   Toast.showTop(
                     'seifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常23134'
                   );
-                },
-              },
-            ],
-          },
-          {
-            sectionHeaderText: 'PopViews',
-            data: [
-              {
-                title: 'ActionSheet',
-                detailText: this.state.promptKeyboardType,
-                onPress: () => {
-                  ActionSheet.show({
-                    options: [
-                      'numeric',
-                      'number-pad',
-                      'phone-pad',
-                      'decimal-pad',
-                      'numeric-password',
-                      'email-address',
-                      'password',
-                      'url',
-                      'balba',
-                    ],
-                    title: 'PromptTypes',
-                  })
-                    .then(result => {
-                      if (result === 'cancelAction') {
-                        Toast.showBottom(result);
-                      } else {
-                        this.setState({
-                          promptKeyboardType: result.selectedText,
-                        });
-                      }
-                    })
-                    .catch(err => {
-                      Toast.showBottom(err.message);
-                    });
-                },
-              },
-              {
-                title: 'Prompt',
-                onPress: () => {
-                  Prompt.show({
-                    title: 'Hi',
-                    message: 'hello my friend',
-                    keyboardType: this.state
-                      .promptKeyboardType as PromptKeyboardType,
-                    confirmText: '对了',
-                  })
-                    .then(result => {
-                      Toast.showBottom(result.message || '');
-                    })
-                    .catch(err => {
-                      Toast.showBottom(err.message);
-                    });
                 },
               },
             ],

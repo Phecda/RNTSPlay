@@ -18,8 +18,8 @@ import { ADWallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
 import { ScreenID } from '../../variable';
 import Toast from '../../component/toast';
-import ActionSheet from '../../component/action-sheet';
 import { IconNavButton } from '../../component/navigation-button';
+import RNND from 'react-native-native-dialogs';
 
 interface Prop {
   category?: ADWallPaperCategory;
@@ -128,13 +128,12 @@ export default class WPPapersInCategory extends React.Component<
   };
 
   _showOrderSelector = () => {
-    ActionSheet.show({
+    RNND.showActionSheet({
       title: '选择排序',
-      options: options.map(opt => opt.value),
-    }).then(result => {
-      if (result !== 'cancelAction') {
-        this.setState({ orderIndex: result.selectedIndex });
-      }
+      options: options.map(opt => ({ title: opt.value })),
+      onSelect: ({ index }) => {
+        this.setState({ orderIndex: index });
+      },
     });
   };
 
