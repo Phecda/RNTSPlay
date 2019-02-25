@@ -4614,10 +4614,6 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-"react-native-dialogs@git://github.com/Phecda/react-native-dialogs":
-  version "1.0.2"
-  resolved "git://github.com/Phecda/react-native-dialogs#8a4cbfdb5d847bfee3f27ef12d3ad4b25d053c7b"
-
 react-native-elements@^1.0.0-beta7:
   version "1.0.0-beta7"
   resolved "http://registry.npm.taobao.org/react-native-elements/download/react-native-elements-1.0.0-beta7.tgz#d732affc905079033a8b53343587f7c1dbc59834"

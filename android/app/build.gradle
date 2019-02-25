@@ -140,7 +140,6 @@ dependencies {
     implementation project(':react-native-native-dialogs')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-fs')
-    implementation(project(':react-native-dialogs'))
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation project(':react-native-gesture-handler')
