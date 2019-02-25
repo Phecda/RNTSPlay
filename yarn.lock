@@ -4616,7 +4616,7 @@ react-lifecycles-compat@^3.0.4:
 
 "react-native-dialogs@git://github.com/Phecda/react-native-dialogs":
   version "1.0.2"
-  resolved "git://github.com/Phecda/react-native-dialogs#50231b543d5a786f6d02e65ccda9e98d6a0f2ecd"
+  resolved "git://github.com/Phecda/react-native-dialogs#8a4cbfdb5d847bfee3f27ef12d3ad4b25d053c7b"
 
 react-native-elements@^1.0.0-beta7:
   version "1.0.0-beta7"
