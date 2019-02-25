@@ -4652,6 +4652,10 @@ react-native-image-zoom-viewer@^2.2.24:
   dependencies:
     react-native-image-pan-zoom "^2.1.9"
 
+"react-native-native-dialogs@https://github.com/Phecda/react-native-native-dialogs.git":
+  version "1.0.0"
+  resolved "https://github.com/Phecda/react-native-native-dialogs.git#9680e5f573f5d81985aa34e4187d485b1b385a86"
+
 react-native-root-siblings@^3.0.0, react-native-root-siblings@^3.1.7:
   version "3.1.7"
   resolved "http://registry.npm.taobao.org/react-native-root-siblings/download/react-native-root-siblings-3.1.7.tgz#9af7cf7495311db9fbe929201a3234ed114cfe77"
