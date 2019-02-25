@@ -4650,7 +4650,7 @@ react-native-image-zoom-viewer@^2.2.24:
 
 "react-native-native-dialogs@https://github.com/Phecda/react-native-native-dialogs.git":
   version "1.0.0"
-  resolved "https://github.com/Phecda/react-native-native-dialogs.git#9680e5f573f5d81985aa34e4187d485b1b385a86"
+  resolved "https://github.com/Phecda/react-native-native-dialogs.git#3f7cf97ead1e01153faf7c1a268dce1036782455"
 
 react-native-root-siblings@^3.0.0, react-native-root-siblings@^3.1.7:
   version "3.1.7"

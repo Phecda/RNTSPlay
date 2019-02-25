@@ -130,7 +130,7 @@ export default class WPPapersInCategory extends React.Component<
   _showOrderSelector = () => {
     RNND.showActionSheet({
       title: '选择排序',
-      options: options.map(opt => ({ title: opt.value })),
+      options: options.map(opt => opt.value),
       onSelect: ({ index }) => {
         this.setState({ orderIndex: index });
       },
