@@ -75,8 +75,6 @@ export default class WPPapersInCategory extends React.Component<
     this.mounted = true;
     this.props.navigation.setParams({
       showOrderSelector: this._showOrderSelector,
-    });
-    this.props.navigation.setParams({
       order: options[this.state.orderIndex].value,
     });
     this._requestData(true);
@@ -145,6 +143,7 @@ export default class WPPapersInCategory extends React.Component<
       <View style={commonStyles.container}>
         <FlatList
           numColumns={3}
+          removeClippedSubviews={Platform.OS === 'android'}
           refreshing={refreshing}
           onRefresh={() => this._requestData(true)}
           onEndReached={() => this._requestData(false)}

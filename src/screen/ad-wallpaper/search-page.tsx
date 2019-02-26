@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   View,
+  Platform,
 } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import StyleSheet from '../../utility/StyleSheet';
@@ -114,6 +115,7 @@ export default class WPSearch extends React.Component<
         />
         <FlatList
           numColumns={3}
+          removeClippedSubviews={Platform.OS === 'android'}
           onEndReached={() => this._requestData(false)}
           data={wallpapers}
           style={{ elevation: 4 }}
