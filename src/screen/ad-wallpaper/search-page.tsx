@@ -103,9 +103,10 @@ export default class WPSearch extends React.Component<
           inputContainerStyle={{ backgroundColor: 'rgb(227,227,230)' }}
           lightTheme={true}
           inputStyle={{ fontSize: 16, color: STYLE_COLOR.TEXT_MAIN }}
-          cancelButtonProps={{ title: '取消' }}
+          cancelButtonTitle="取消"
           returnKeyType="search"
           defaultValue={searchText}
+          value={searchText}
           showLoading={refreshing}
           autoFocus={true}
           onChangeText={text => {
