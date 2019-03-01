@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, SectionList, View, Text } from 'react-native';
+import Config from 'react-native-config';
 import {
   NavigationScreenProps,
   NavigationScreenOptions,
@@ -101,9 +102,7 @@ export default class SampleHome extends React.Component<
               {
                 title: 'Toast Top',
                 onPress: () => {
-                  Toast.showTop(
-                    'seifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常2313ifho常23134'
-                  );
+                  Toast.showTop(Config.VERSION);
                 },
               },
             ],

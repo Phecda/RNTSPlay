@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -116,8 +117,8 @@ android {
         applicationId "com.rntsplay"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode project.env.get("APP_VERSION_CODE").toInteger()
+        versionName project.env.get("VERSION")
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -165,6 +166,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-config')
     implementation project(':react-native-native-dialogs')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-fs')
