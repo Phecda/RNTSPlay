@@ -12,18 +12,16 @@ export default ({
   title,
   detailText,
   detailComponent,
-  onPress,
-  disabled,
   forceHideRightAngle,
   dualText,
+  ...touchableProps
 }: ActionDualCellProps) => {
-  const rightAngleVisible = !forceHideRightAngle && onPress;
+  const rightAngleVisible = !forceHideRightAngle && touchableProps.onPress;
   return (
     <TouchableHighlight
-      onPress={onPress}
-      disabled={disabled}
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
+      {...touchableProps}
     >
       <SafeAreaView
         forceInset={{ bottom: 'never', top: 'never' }}

@@ -109,11 +109,27 @@ export default class SampleHome extends React.Component<
           },
         ]}
         keyExtractor={(_, index) => `${index}`}
-        renderItem={({ item }) => {
-          if ('dualText' in item) return <ActionDualCell {...item} />;
-          return <ActionCell {...item} />;
+        renderItem={({ item, separators }) => {
+          if ('dualText' in item) {
+            return (
+              <ActionDualCell
+                {...item}
+                onPressIn={separators.highlight}
+                onPressOut={separators.unhighlight}
+              />
+            );
+          }
+          return (
+            <ActionCell
+              {...item}
+              onPressIn={separators.highlight}
+              onPressOut={separators.unhighlight}
+            />
+          );
         }}
-        ItemSeparatorComponent={() => <ListSeparator />}
+        ItemSeparatorComponent={({ highlighted }) => {
+          return <ListSeparator highlighted={highlighted} />;
+        }}
         SectionSeparatorComponent={({ leadingItem, trailingItem, section }) => {
           if (!leadingItem && trailingItem && section.sectionHeaderText) {
             return (

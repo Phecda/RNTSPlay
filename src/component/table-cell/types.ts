@@ -1,6 +1,9 @@
 import React from 'react';
-import { ImageSourcePropType } from 'react-native';
-interface ActionCellBaseProps {
+import {
+  ImageSourcePropType,
+  TouchableWithoutFeedbackProps,
+} from 'react-native';
+interface ActionCellBaseProps extends TouchableWithoutFeedbackProps {
   icon?: ImageSourcePropType;
   iconSize?: number;
   roundIcon?: boolean;
@@ -9,9 +12,6 @@ interface ActionCellBaseProps {
 
   detailText?: string;
   detailComponent?: React.ReactElement<any>;
-
-  onPress?: () => void;
-  disabled?: boolean;
   forceHideRightAngle?: boolean;
 }
 
