@@ -12,7 +12,7 @@ import {
   ListSeparator,
 } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
-import { STYLE_SIZE, STYLE_COLOR } from '../../variable';
+import { STYLE_SIZE, STYLE_COLOR, ScreenID } from '../../variable';
 import Toast from '../../component/toast';
 
 interface Prop {}
@@ -103,6 +103,17 @@ export default class SampleHome extends React.Component<
                 title: 'Toast Top',
                 onPress: () => {
                   Toast.showTop(Config.VERSION);
+                },
+              },
+            ],
+          },
+          {
+            sectionHeaderText: 'Modules',
+            data: [
+              {
+                title: 'Device Info',
+                onPress: () => {
+                  this.props.navigation.navigate(ScreenID.Sample_Device_Info);
                 },
               },
             ],

@@ -9,14 +9,13 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import { ScreenID, STYLE_COLOR } from '../variable';
 import {
-  ADWPCategory,
   ADWPImageDetail,
   ADWPPapersInCategory,
   ADWPSearch,
   ADWPHome,
 } from './ad-wallpaper';
 import SampleHome from './sample/sample-home';
-import { Button } from 'react-native';
+import DeviceInfo from './sample/device-info';
 
 const tabRoutes = {
   [ScreenID.AD_Wallpaper_Home]: {
@@ -77,6 +76,7 @@ const MainStack = createStackNavigator(
     [ScreenID.AD_Wallpaper_Detail]: ADWPImageDetail,
     [ScreenID.AD_Wallpaper_Papers]: ADWPPapersInCategory,
     [ScreenID.AD_Wallpaper_Search]: ADWPSearch,
+    [ScreenID.Sample_Device_Info]: DeviceInfo,
   },
   {
     headerTransitionPreset: 'uikit',

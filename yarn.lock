@@ -2560,7 +2560,7 @@ hoist-non-react-statics@^2.2.1, hoist-non-react-statics@^2.3.1, hoist-non-react-
   version "2.5.5"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
-hoist-non-react-statics@^3.0.1, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.1:
+hoist-non-react-statics@^3.0.1, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   dependencies:
@@ -4835,6 +4835,11 @@ react-lifecycles-compat@^3.0.4:
 react-native-config@^0.11.7:
   version "0.11.7"
   resolved "http://registry.npm.taobao.org/react-native-config/download/react-native-config-0.11.7.tgz#a2b323f2ecd76a4df88cbb6bc86eaa2ef9febee7"
+
+react-native-device-info@^1.4.3:
+  version "1.4.3"
+  resolved "http://registry.npm.taobao.org/react-native-device-info/download/react-native-device-info-1.4.3.tgz#dd08fbc37cc97065072045716b1ad3758424358d"
+  integrity sha1-3Qj7w3zJcGUHIEVxaxrTdYQkNY0=
 
 react-native-elements@^1.0.0-beta7:
   version "1.1.0"
