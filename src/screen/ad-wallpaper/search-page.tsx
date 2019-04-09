@@ -21,10 +21,10 @@ import commonStyles from '../../variable/styles';
 interface Props {}
 
 interface State {
-  wallpapers: ADWallPaper[];
+  wallpapers: ADWallpaperAPI.WallPaper[];
   loading: boolean;
   refreshing: boolean;
-  image: ADWallPaper | null;
+  image: ADWallpaperAPI.WallPaper | null;
   searchText: string;
 }
 

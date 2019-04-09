@@ -19,7 +19,7 @@ interface Response<R = any> {
   res: R;
 }
 
-async function fetchData<T = any>(url: string) {
+function fetchData<T = any>(url: string) {
   return fetch(url, {
     method: 'GET',
     headers: { 'User-Agent': 'lightwp,198,appstore' },
@@ -41,12 +41,39 @@ async function fetchData<T = any>(url: string) {
     });
 }
 
+export interface Category {
+  ename: string;
+  name: string;
+  id: string;
+  desc: string;
+  cover: string;
+}
+
 export function fetchCategories({ first = 0, adult = true }: RequestParamBase) {
-  return fetchData<{ category: ADWallPaperCategory[] }>(
+  return fetchData<{ category: Category[] }>(
     `http://service.picasso.adesk.com/v1/vertical/category?adult=${Number(
       adult
     )}&first=${first}`
   );
+}
+
+export interface WallPaper {
+  atime: number;
+  thumb: string;
+  id: string;
+  img: string;
+  preview: string;
+  rule: string;
+  /**
+   * 请求时需要设置User-Agent 为 `lightwp,198,appstore` 才有
+   */
+  user?: User;
+}
+
+export interface User {
+  avatar: string;
+  name: string;
+  follower: number;
 }
 
 export function fetchWallpapersInCategory(
@@ -60,13 +87,21 @@ export function fetchWallpapersInCategory(
     : `http://service.picasso.adesk.com/v1/vertical/vertical?limit=${limit}&adult=${Number(
         adult
       )}&first=${first}&skip=${offset}&order=${order}`;
-  return fetchData<{ vertical: ADWallPaper[] }>(url);
+  return fetchData<{ vertical: WallPaper[] }>(url);
+}
+
+export interface Comment {
+  atime: number;
+  content: string;
+  user: User;
+  size: number;
+  reply_user: User | {};
 }
 
 export function fetchCommentOfWallpaper(wallpaperID: string) {
   return fetchData<{
-    comment: ADWallpaperComment[];
-    hot: ADWallpaperComment[];
+    comment: Comment[];
+    hot: Comment[];
     meta: any;
     vertical: any;
   }>(
@@ -83,5 +118,5 @@ export function searchWallpaper(
   )}?limit=${limit}&adult=${Number(
     adult
   )}&first=${first}&skip=${offset}&order=${order}`;
-  return fetchData<{ vertical: ADWallPaper[] }>(url);
+  return fetchData<{ vertical: WallPaper[] }>(url);
 }

@@ -26,12 +26,12 @@ import ImageViewerModal from '../../component/image-viewer-modal';
 import { IconNavButton } from '../../component/navigation-button';
 
 interface Prop {
-  image: ADWallPaper;
+  image: ADWallpaperAPI.WallPaper;
 }
 
 interface State {
-  comments: ADWallpaperComment[];
-  hotComments: ADWallpaperComment[];
+  comments: ADWallpaperAPI.Comment[];
+  hotComments: ADWallpaperAPI.Comment[];
   originSize?: {
     width: number;
     height: number;

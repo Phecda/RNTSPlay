@@ -21,7 +21,7 @@ import Toast from '../../component/toast';
 interface Prop {}
 
 interface State {
-  categories: ADWallPaperCategory[];
+  categories: ADWallpaperAPI.Category[];
   loading: boolean;
 }
 
@@ -74,7 +74,7 @@ export default class WPCategory extends React.Component<
       });
   };
 
-  _pushPapers = (category?: ADWallPaperCategory) => {
+  _pushPapers = (category?: ADWallpaperAPI.Category) => {
     this.props.navigation.navigate(ScreenID.AD_Wallpaper_Papers, {
       category,
     });

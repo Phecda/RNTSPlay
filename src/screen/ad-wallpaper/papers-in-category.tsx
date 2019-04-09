@@ -22,15 +22,15 @@ import { IconNavButton } from '../../component/navigation-button';
 import RNND from 'react-native-native-dialogs';
 
 interface Prop {
-  category?: ADWallPaperCategory;
+  category?: ADWallpaperAPI.Category;
   presetOrder?: Order;
 }
 
 interface State {
-  wallpapers: ADWallPaper[];
+  wallpapers: ADWallpaperAPI.WallPaper[];
   loading: boolean;
   refreshing: boolean;
-  image: ADWallPaper | null;
+  image: ADWallpaperAPI.WallPaper | null;
   orderIndex: number;
 }
 
