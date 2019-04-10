@@ -35,6 +35,7 @@
     "@types/jest": "^23.3.10",
     "@types/react": "^16.7.17",
     "@types/react-native": "^0.57.19",
+    "@types/react-native-platform-touchable": "^1.1.0",
     "@types/react-native-scrollable-tab-view": "^0.8.4",
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/react-navigation": "^3.0.1",

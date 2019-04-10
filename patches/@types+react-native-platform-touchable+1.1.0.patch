@@ -1,0 +1,33 @@
+diff --git a/node_modules/@types/react-native-platform-touchable/index.d.ts b/node_modules/@types/react-native-platform-touchable/index.d.ts
+index 5610194..601feb6 100644
+--- a/node_modules/@types/react-native-platform-touchable/index.d.ts
++++ b/node_modules/@types/react-native-platform-touchable/index.d.ts
+@@ -4,15 +4,25 @@
+ // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+ // TypeScript Version: 2.8
+ 
+-import * as React from "react";
+-import { BackgroundPropType, RippleBackgroundPropType, ThemeAttributeBackgroundPropType, TouchableWithoutFeedbackProps } from "react-native";
++import * as React from 'react';
++import {
++    BackgroundPropType,
++    RippleBackgroundPropType,
++    ThemeAttributeBackgroundPropType,
++    TouchableWithoutFeedbackProps,
++    TouchableOpacity,
++    TouchableHighlight,
++    TouchableWithoutFeedback,
++} from 'react-native';
+ 
+ export interface PlatformTouchableProps extends TouchableWithoutFeedbackProps {
++    // General
++    fallback?: typeof TouchableOpacity | typeof TouchableHighlight | typeof TouchableWithoutFeedback;
+     // TouchableOpacity (default iOS)
+     activeOpacity?: number;
+     // TouchableNativeFeedback (default Android)
+     background?: BackgroundPropType;
+-    foreground?: boolean;
++    foreground?: BackgroundPropType;
+     // TouchableHighlight
+     underlayColor?: string;
+     onHideUnderlay?: () => void;

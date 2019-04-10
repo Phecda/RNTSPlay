@@ -648,6 +648,14 @@
   version "15.5.9"
   resolved "http://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.5.9.tgz#f2d14df87b0739041bc53a7d75e3d77d726a3ec0"
 
+"@types/react-native-platform-touchable@^1.1.0":
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/@types/react-native-platform-touchable/download/@types/react-native-platform-touchable-1.1.0.tgz#3c8d6e7afeea1946fbd44f74d105bea39bc321b3"
+  integrity sha1-PI1uev7qGUb71E900QW+o5vDIbM=
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native-scrollable-tab-view@^0.8.4":
   version "0.8.5"
   resolved "http://registry.npm.taobao.org/@types/react-native-scrollable-tab-view/download/@types/react-native-scrollable-tab-view-0.8.5.tgz#d12ce1aa461fd2612067ad1ae401c3282379558d"
