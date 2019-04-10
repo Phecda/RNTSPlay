@@ -1,9 +1,10 @@
 import React from 'react';
-import { TouchableHighlight, View, Image, Text } from 'react-native';
+import { TouchableHighlight, View, Image, Text, TouchableNativeFeedback } from 'react-native';
 import { ActionDualCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
 import { SafeAreaView } from 'react-navigation';
+import Touchable from 'react-native-platform-touchable';
 
 export default ({
   icon,
@@ -18,8 +19,10 @@ export default ({
 }: ActionDualCellProps) => {
   const rightAngleVisible = !forceHideRightAngle && touchableProps.onPress;
   return (
-    <TouchableHighlight
+    <Touchable
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
+      fallback={TouchableHighlight}
+      foreground={icon ? TouchableNativeFeedback.SelectableBackground() : undefined}
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
       {...touchableProps}
     >
@@ -57,10 +60,8 @@ export default ({
         ) : detailComponent ? (
           detailComponent
         ) : null}
-        {rightAngleVisible && (
-          <Image source={require('../../assets/ico_arrow_r.png')} />
-        )}
+        {rightAngleVisible && <Image source={require('../../assets/ico_arrow_r.png')} />}
       </SafeAreaView>
-    </TouchableHighlight>
+    </Touchable>
   );
 };

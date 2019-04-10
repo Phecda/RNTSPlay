@@ -1,9 +1,10 @@
 import React from 'react';
-import { TouchableHighlight, Image, Text } from 'react-native';
+import { TouchableHighlight, Image, Text, TouchableNativeFeedback } from 'react-native';
 import { ActionCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
 import { SafeAreaView } from 'react-navigation';
+import Touchable from 'react-native-platform-touchable';
 
 export default ({
   icon,
@@ -17,15 +18,14 @@ export default ({
 }: ActionCellProps) => {
   const rightAngleVisible = !forceHideRightAngle && touchableProps.onPress;
   return (
-    <TouchableHighlight
+    <Touchable
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
+      fallback={TouchableHighlight}
+      foreground={icon ? TouchableNativeFeedback.SelectableBackground() : undefined}
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
       {...touchableProps}
     >
-      <SafeAreaView
-        style={tableCellStyles.container}
-        forceInset={{ bottom: 'never', top: 'never' }}
-      >
+      <SafeAreaView style={tableCellStyles.container} forceInset={{ bottom: 'never', top: 'never' }}>
         {!!icon && (
           <Image
             source={icon}
@@ -49,10 +49,8 @@ export default ({
         ) : detailComponent ? (
           detailComponent
         ) : null}
-        {rightAngleVisible && (
-          <Image source={require('../../assets/ico_arrow_r.png')} />
-        )}
+        {rightAngleVisible && <Image source={require('../../assets/ico_arrow_r.png')} />}
       </SafeAreaView>
-    </TouchableHighlight>
+    </Touchable>
   );
 };
