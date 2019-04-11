@@ -1,11 +1,11 @@
 import { Reducer } from 'redux';
-import { UserState, UserAction, UserActionTypes } from './types';
+import { UserState, TUserAction, UserActionTypes } from './types';
 
 const initialState: UserState = {
   phone: null,
 };
 
-const reducer: Reducer<UserState, UserAction> = (state = initialState, action) => {
+const reducer: Reducer<UserState, TUserAction> = (state = initialState, action) => {
   switch (action.type) {
     case UserActionTypes.DID_LOGIN:
       return { ...state, phone: action.payload };

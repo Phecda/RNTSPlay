@@ -1,4 +1,8 @@
 export default {
+  App_Main_Stack: 'App_Main_Stack',
+  App_Root_Switch: 'App_Root_Switch',
+  APP_AUTH_LOADING: 'APP_AUTH_LOADING',
+  AUTH_LOGIN: 'AUTH_LOGIN',
   Sample_Home: 'Sample_Home',
   Sample_Device_Info: 'Sample_Device_Info',
   AD_Wallpaper_Home: 'AD_Wallpaper_Home',
