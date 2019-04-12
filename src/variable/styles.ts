@@ -6,6 +6,10 @@ const commonStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: STYLE_COLOR.CONTAINER_BACKGROUND,
   },
+  contentCenter: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default commonStyles;

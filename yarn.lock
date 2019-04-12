@@ -850,9 +850,17 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native@*", "@types/react-native@^0.57.19":
+"@types/react-native@*":
   version "0.57.38"
   resolved "http://registry.npm.taobao.org/@types/react-native/download/@types/react-native-0.57.38.tgz#2ff6ed1a7cc207afbfd87bf496513d96931d1446"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/react" "*"
+
+"@types/react-native@^0.57.43":
+  version "0.57.43"
+  resolved "http://registry.npm.taobao.org/@types/react-native/download/@types/react-native-0.57.43.tgz#a4d3fa7be905a8e28b7682220335dacefffd816f"
+  integrity sha1-pNP6e+kFqOKLdoIiAzXazv/9gW8=
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
