@@ -1,12 +1,24 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { NavigationScreenProps, NavigationScreenOptions, SafeAreaView } from 'react-navigation';
+import {
+  View,
+  KeyboardAvoidingView,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
+import {
+  NavigationScreenProps,
+  NavigationScreenOptions,
+  SafeAreaView,
+} from 'react-navigation';
 import { Button } from 'react-native-elements';
 import commonStyles from '../../variable/styles';
 import StyleSheet from '../../utility/StyleSheet';
 import { ScreenID } from '../../variable';
 import AuthInput from './input';
-import withMappedReduxState, { PropsFromDispatch } from '../../store/withMappedReduxState';
+import withMappedReduxState, {
+  PropsFromDispatch,
+} from '../../store/withMappedReduxState';
 import { userActions } from '../../store/user';
 
 interface Props {}
@@ -16,8 +28,13 @@ interface State {
   password: string;
 }
 
-class LoginPage extends React.Component<Props & NavigationScreenProps & PropsFromDispatch, State> {
-  static navigationOptions = ({ navigation }: NavigationScreenProps): NavigationScreenOptions => ({
+class LoginPage extends React.Component<
+  Props & NavigationScreenProps & PropsFromDispatch,
+  State
+> {
+  static navigationOptions = ({
+    navigation,
+  }: NavigationScreenProps): NavigationScreenOptions => ({
     title: '登陆',
   });
 
@@ -44,8 +61,14 @@ class LoginPage extends React.Component<Props & NavigationScreenProps & PropsFro
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style={commonStyles.container}>
-          <KeyboardAvoidingView behavior="padding" style={{ alignItems: 'center', justifyContent: 'center', flex: 2 }}>
-            <Image source={require('../../assets/logo.png')} style={{ width: 100, height: 100 }} />
+          <KeyboardAvoidingView
+            behavior="padding"
+            style={{ alignItems: 'center', justifyContent: 'center', flex: 2 }}
+          >
+            <Image
+              source={require('../../assets/logo.png')}
+              style={{ width: 100, height: 100 }}
+            />
             <AuthInput
               featherIcon="user"
               textContentType="telephoneNumber"
@@ -70,7 +93,9 @@ class LoginPage extends React.Component<Props & NavigationScreenProps & PropsFro
               returnKeyType="send"
             />
           </KeyboardAvoidingView>
-          <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <View
+            style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
+          >
             <Button
               title="提交"
               type="outline"

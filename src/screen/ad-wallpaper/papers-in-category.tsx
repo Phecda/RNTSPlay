@@ -9,7 +9,10 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import { NavigationScreenProps, NavigationScreenOptions } from 'react-navigation';
+import {
+  NavigationScreenProps,
+  NavigationScreenOptions,
+} from 'react-navigation';
 import FastImage from 'react-native-fast-image';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { ADWallpaperAPI } from '../../api';
@@ -34,7 +37,10 @@ interface State {
 
 type Order = 'hot' | 'new';
 
-const options = [{ key: 'new', value: '最新' }, { key: 'hot', value: '最热门' }];
+const options = [
+  { key: 'new', value: '最新' },
+  { key: 'hot', value: '最热门' },
+];
 
 @withMappedNavigationAndConfigProps()
 export default class WPPapersInCategory extends React.Component<

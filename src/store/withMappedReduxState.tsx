@@ -8,7 +8,9 @@ export interface PropsFromDispatch {
   dispatch: Dispatch;
 }
 
-export default <P extends object>(wrappedComponent: React.ComponentClass<P>) => {
+export default <P extends object>(
+  wrappedComponent: React.ComponentClass<P>
+) => {
   return connect<PropsFromState, PropsFromDispatch, P, ApplicationState>(
     state => ({ ...state }),
     dispatch => ({ dispatch })

@@ -20,7 +20,9 @@ export default class AuthInput extends React.PureComponent<
     return (
       <Input
         ref={i => (this.input = i)}
-        leftIcon={<Icon name={featherIcon} size={16} color={STYLE_COLOR.TEXT_GREY} />}
+        leftIcon={
+          <Icon name={featherIcon} size={16} color={STYLE_COLOR.TEXT_GREY} />
+        }
         leftIconContainerStyle={{ marginHorizontal: STYLE_SIZE.SPACING_1 }}
         containerStyle={{ width: '80%', marginBottom: STYLE_SIZE.SPACING_2 }}
         style={{ fontSize: 16 }}

@@ -1,5 +1,11 @@
 import React from 'react';
-import { TouchableHighlight, View, Image, Text, TouchableNativeFeedback } from 'react-native';
+import {
+  TouchableHighlight,
+  View,
+  Image,
+  Text,
+  TouchableNativeFeedback,
+} from 'react-native';
 import { ActionDualCellProps } from './types';
 import { STYLE_COLOR, STYLE_SIZE } from '../../variable';
 import tableCellStyles from './styles';
@@ -22,7 +28,9 @@ export default ({
     <Touchable
       style={{ backgroundColor: STYLE_COLOR.CONTENT_BACKGROUND }}
       fallback={TouchableHighlight}
-      foreground={icon ? TouchableNativeFeedback.SelectableBackground() : undefined}
+      foreground={
+        icon ? TouchableNativeFeedback.SelectableBackground() : undefined
+      }
       underlayColor={STYLE_COLOR.CELL_UNDERLAY}
       {...touchableProps}
     >
@@ -60,7 +68,9 @@ export default ({
         ) : detailComponent ? (
           detailComponent
         ) : null}
-        {rightAngleVisible && <Image source={require('../../assets/ico_arrow_r.png')} />}
+        {rightAngleVisible && (
+          <Image source={require('../../assets/ico_arrow_r.png')} />
+        )}
       </SafeAreaView>
     </Touchable>
   );

@@ -9,7 +9,12 @@ import {
 } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import { ScreenID, STYLE_COLOR } from '../variable';
-import { ADWPImageDetail, ADWPPapersInCategory, ADWPSearch, ADWPHome } from './ad-wallpaper';
+import {
+  ADWPImageDetail,
+  ADWPPapersInCategory,
+  ADWPSearch,
+  ADWPHome,
+} from './ad-wallpaper';
 import SampleHome from './sample/sample-home';
 import DeviceInfo from './sample/device-info';
 import LoginPage from './authentication/login';
@@ -18,12 +23,16 @@ import AuthenticationLoading from './authentication/loading-page';
 const tabRoutes = {
   [ScreenID.AD_Wallpaper_Home]: {
     component: ADWPHome,
-    icon: (tintColor: string) => <Feather name="sun" size={25} color={tintColor} />,
+    icon: (tintColor: string) => (
+      <Feather name="sun" size={25} color={tintColor} />
+    ),
     headerTitle: '光点壁纸',
   },
   [ScreenID.Sample_Home]: {
     component: SampleHome,
-    icon: (tintColor: string) => <Feather name="list" size={25} color={tintColor} />,
+    icon: (tintColor: string) => (
+      <Feather name="list" size={25} color={tintColor} />
+    ),
     headerTitle: '样例',
   },
 };
@@ -48,7 +57,9 @@ const HomeTabNavigator = createBottomTabNavigator(navigationRouteMap, {
   },
 });
 
-HomeTabNavigator.navigationOptions = ({ navigation }: NavigationScreenProps): NavigationScreenOptions => {
+HomeTabNavigator.navigationOptions = ({
+  navigation,
+}: NavigationScreenProps): NavigationScreenOptions => {
   const { routes, index } = navigation.state;
   const { routeName } = routes[index];
   const route = tabRoutes[routeName];
