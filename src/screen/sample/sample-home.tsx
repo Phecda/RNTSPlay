@@ -1,19 +1,13 @@
 import React from 'react';
 import { StyleSheet, SectionList, View, Text } from 'react-native';
 import Config from 'react-native-config';
-import {
-  NavigationScreenProps,
-  NavigationScreenOptions,
-  SafeAreaView,
-} from 'react-navigation';
-import {
-  ActionCell,
-  ActionDualCell,
-  ListSeparator,
-} from '../../component/table-cell';
+import { NavigationScreenProps, NavigationScreenOptions, SafeAreaView } from 'react-navigation';
+import { ActionCell, ActionDualCell, ListSeparator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR, ScreenID } from '../../variable';
 import Toast from '../../component/toast';
+import withMappedReduxState, { PropsFromDispatch } from '../../store/withMappedReduxState';
+import { userActions } from '../../store/user';
 
 interface Prop {}
 
@@ -21,10 +15,7 @@ interface State {
   promptKeyboardType: string;
 }
 
-export default class SampleHome extends React.Component<
-  Prop & NavigationScreenProps,
-  State
-> {
+class SampleHome extends React.Component<Prop & NavigationScreenProps & PropsFromDispatch, State> {
   static navigationOptions: NavigationScreenOptions = {
     title: '样例',
   };
@@ -53,32 +44,26 @@ export default class SampleHome extends React.Component<
                 detailText: '详细文本',
                 roundIcon: true,
                 icon: {
-                  uri:
-                    'https://i0.hdslb.com/bfs/archive/ca717badbf1d974a8273aa6d34c8ef3cc6c70c30.jpg',
+                  uri: 'https://i0.hdslb.com/bfs/archive/ca717badbf1d974a8273aa6d34c8ef3cc6c70c30.jpg',
                 },
                 onPress: () => {},
               },
               {
                 title: '样例样例样例样例样例样例样例样例样例样例样例样例样例',
-                detailText:
-                  '详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本',
-                dualText:
-                  '双行文本双行文本双行文本双行文本双行文本双行文本双行文本双行文本',
+                detailText: '详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本',
+                dualText: '双行文本双行文本双行文本双行文本双行文本双行文本双行文本双行文本',
                 roundIcon: true,
                 icon: {
-                  uri:
-                    'https://i0.hdslb.com/bfs/archive/ca717badbf1d974a8273aa6d34c8ef3cc6c70c30.jpg',
+                  uri: 'https://i0.hdslb.com/bfs/archive/ca717badbf1d974a8273aa6d34c8ef3cc6c70c30.jpg',
                 },
                 onPress: () => {},
               },
               {
                 title: '样例样例样例样例样例样例样例样例样例样例样例样例样例',
-                dualText:
-                  '双行文本双行文本双行文本双行文本双行文本双行文本双行文本双行文本',
+                dualText: '双行文本双行文本双行文本双行文本双行文本双行文本双行文本双行文本',
                 roundIcon: true,
                 icon: {
-                  uri:
-                    'https://i0.hdslb.com/bfs/archive/ca717badbf1d974a8273aa6d34c8ef3cc6c70c30.jpg',
+                  uri: 'https://i0.hdslb.com/bfs/archive/ca717badbf1d974a8273aa6d34c8ef3cc6c70c30.jpg',
                 },
                 onPress: () => {},
               },
@@ -118,25 +103,25 @@ export default class SampleHome extends React.Component<
               },
             ],
           },
+          {
+            sectionHeaderText: '',
+            data: [
+              {
+                title: '注销',
+                onPress: () => {
+                  this.props.dispatch(userActions.onWillLogout());
+                  this.props.navigation.navigate(ScreenID.APP_AUTH_LOADING);
+                },
+              },
+            ],
+          },
         ]}
         keyExtractor={(_, index) => `${index}`}
         renderItem={({ item, separators }) => {
           if ('dualText' in item) {
-            return (
-              <ActionDualCell
-                {...item}
-                onPressIn={separators.highlight}
-                onPressOut={separators.unhighlight}
-              />
-            );
+            return <ActionDualCell {...item} onPressIn={separators.highlight} onPressOut={separators.unhighlight} />;
           }
-          return (
-            <ActionCell
-              {...item}
-              onPressIn={separators.highlight}
-              onPressOut={separators.unhighlight}
-            />
-          );
+          return <ActionCell {...item} onPressIn={separators.highlight} onPressOut={separators.unhighlight} />;
         }}
         ItemSeparatorComponent={({ highlighted }) => {
           return <ListSeparator highlighted={highlighted} />;
@@ -144,39 +129,21 @@ export default class SampleHome extends React.Component<
         SectionSeparatorComponent={({ leadingItem, trailingItem, section }) => {
           if (!leadingItem && trailingItem && section.sectionHeaderText) {
             return (
-              <SafeAreaView
-                style={styles.sectionMargin}
-                forceInset={{ top: 'never', bottom: 'never' }}
-              >
-                <Text style={styles.sectionMarginText}>
-                  {section.sectionHeaderText}
-                </Text>
+              <SafeAreaView style={styles.sectionMargin} forceInset={{ top: 'never', bottom: 'never' }}>
+                <Text style={styles.sectionMarginText}>{section.sectionHeaderText}</Text>
               </SafeAreaView>
             );
-          } else if (
-            leadingItem &&
-            !trailingItem &&
-            section.sectionFooterText
-          ) {
+          } else if (leadingItem && !trailingItem && section.sectionFooterText) {
             return (
-              <SafeAreaView
-                style={styles.sectionMargin}
-                forceInset={{ top: 'never', bottom: 'never' }}
-              >
-                <Text style={styles.sectionMarginText}>
-                  {section.sectionFooterText}
-                </Text>
+              <SafeAreaView style={styles.sectionMargin} forceInset={{ top: 'never', bottom: 'never' }}>
+                <Text style={styles.sectionMarginText}>{section.sectionFooterText}</Text>
               </SafeAreaView>
             );
           }
           return null;
         }}
-        renderSectionHeader={() => (
-          <View style={{ height: STYLE_SIZE.SPACING_1 }} />
-        )}
-        renderSectionFooter={() => (
-          <View style={{ height: STYLE_SIZE.SPACING_1 }} />
-        )}
+        renderSectionHeader={() => <View style={{ height: STYLE_SIZE.SPACING_1 }} />}
+        renderSectionFooter={() => <View style={{ height: STYLE_SIZE.SPACING_1 }} />}
         style={commonStyles.container}
       />
     );
@@ -194,3 +161,5 @@ const styles = StyleSheet.create({
     color: STYLE_COLOR.TEXT_SECONDARY,
   },
 });
+
+export default withMappedReduxState(SampleHome);

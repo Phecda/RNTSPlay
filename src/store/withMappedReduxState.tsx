@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '.';
 import { Dispatch } from 'redux';
 
-type PropsFromState = ApplicationState;
-interface PropsFromDispatch {
+export type PropsFromState = ApplicationState;
+export interface PropsFromDispatch {
   dispatch: Dispatch;
 }
 
