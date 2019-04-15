@@ -5516,6 +5516,11 @@ react-native-elements@^1.0.0-beta7:
     react-native-ratings "^6.3.0"
     react-native-status-bar-height "^2.2.0"
 
+react-native-fast-image@^5.2.0:
+  version "5.2.0"
+  resolved "http://registry.npm.taobao.org/react-native-fast-image/download/react-native-fast-image-5.2.0.tgz#6730eb06951ea6f9a79abe02a733bc05b7a73412"
+  integrity sha1-ZzDrBpUepvmnmr4CpzO8BbenNBI=
+
 react-native-fs@^2.13.3:
   version "2.13.3"
   resolved "http://registry.npm.taobao.org/react-native-fs/download/react-native-fs-2.13.3.tgz#a422f0ecd8a093a7e99d8d51ff51440e090a18a8"

@@ -18,6 +18,7 @@
     "react-native-config": "^0.11.7",
     "react-native-device-info": "^1.4.3",
     "react-native-elements": "^1.0.0-beta7",
+    "react-native-fast-image": "^5.2.0",
     "react-native-fs": "^2.13.3",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-image-zoom-viewer": "^2.2.24",

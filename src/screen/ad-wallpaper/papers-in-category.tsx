@@ -13,6 +13,7 @@ import {
   NavigationScreenProps,
   NavigationScreenOptions,
 } from 'react-navigation';
+import FastImage from 'react-native-fast-image';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { ADWallpaperAPI } from '../../api';
 import commonStyles from '../../variable/styles';
@@ -161,7 +162,7 @@ export default class WPPapersInCategory extends React.Component<
                   });
                 }}
               >
-                <Image
+                <FastImage
                   style={{ width: imgSize, height: imgSize * 1.5 }}
                   source={{ uri: item.thumb }}
                 />

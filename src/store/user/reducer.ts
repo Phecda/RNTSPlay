@@ -5,7 +5,10 @@ const initialState: UserState = {
   phone: null,
 };
 
-const reducer: Reducer<UserState, TUserAction> = (state = initialState, action) => {
+const reducer: Reducer<UserState, TUserAction> = (
+  state = initialState,
+  action
+) => {
   switch (action.type) {
     case UserActionTypes.DID_LOGIN:
       return { ...state, phone: action.payload };

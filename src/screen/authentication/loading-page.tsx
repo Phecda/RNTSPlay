@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
-import { NavigationScreenProps, NavigationScreenOptions } from 'react-navigation';
+import {
+  NavigationScreenProps,
+  NavigationScreenOptions,
+} from 'react-navigation';
 import commonStyles from '../../variable/styles';
 import StyleSheet from '../../utility/StyleSheet';
 import { withReduxState } from '../../store';
@@ -24,7 +27,9 @@ class AuthenticationLoading extends React.Component<
   Props & NavigationScreenProps & PropsFromState & PropsFromDispatch,
   State
 > {
-  static navigationOptions = ({ navigation }: NavigationScreenProps): NavigationScreenOptions => ({
+  static navigationOptions = ({
+    navigation,
+  }: NavigationScreenProps): NavigationScreenOptions => ({
     header: null,
   });
 
@@ -44,7 +49,12 @@ class AuthenticationLoading extends React.Component<
 
   render() {
     return (
-      <View style={[commonStyles.container, { alignItems: 'center', justifyContent: 'center' }]}>
+      <View
+        style={[
+          commonStyles.container,
+          { alignItems: 'center', justifyContent: 'center' },
+        ]}
+      >
         <ActivityIndicator />
         <Text>请稍候</Text>
       </View>

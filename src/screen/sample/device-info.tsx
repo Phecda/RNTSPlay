@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, FlatList, Platform } from 'react-native';
-import { NavigationScreenProps, NavigationScreenOptions } from 'react-navigation';
+import {
+  NavigationScreenProps,
+  NavigationScreenOptions,
+} from 'react-navigation';
 import RNDeviceInfo from 'react-native-device-info';
 import commonStyles from '../../variable/styles';
 import StyleSheet from '../../utility/StyleSheet';
-import { ActionCell, ActionDualCell, ListSeparator } from '../../component/table-cell';
+import {
+  ActionCell,
+  ActionDualCell,
+  ListSeparator,
+} from '../../component/table-cell';
 import checkPermission from '../../utility/permission-android';
 import Toast from '../../component/toast';
 import { FrameConstants } from '../../variable';
@@ -13,8 +20,13 @@ interface Props {}
 
 interface State {}
 
-export default class DeviceInfo extends React.Component<Props & NavigationScreenProps, State> {
-  static navigationOptions = ({ navigation }: NavigationScreenProps): NavigationScreenOptions => ({
+export default class DeviceInfo extends React.Component<
+  Props & NavigationScreenProps,
+  State
+> {
+  static navigationOptions = ({
+    navigation,
+  }: NavigationScreenProps): NavigationScreenOptions => ({
     title: '设备信息',
   });
 
@@ -97,9 +109,17 @@ export default class DeviceInfo extends React.Component<Props & NavigationScreen
         ItemSeparatorComponent={ListSeparator}
         renderItem={({ item, separators }) =>
           'dualText' in item ? (
-            <ActionDualCell {...item} onPressIn={separators.highlight} onPressOut={separators.unhighlight} />
+            <ActionDualCell
+              {...item}
+              onPressIn={separators.highlight}
+              onPressOut={separators.unhighlight}
+            />
           ) : (
-            <ActionCell {...item} onPressIn={separators.highlight} onPressOut={separators.unhighlight} />
+            <ActionCell
+              {...item}
+              onPressIn={separators.highlight}
+              onPressOut={separators.unhighlight}
+            />
           )
         }
       />

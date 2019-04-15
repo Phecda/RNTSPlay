@@ -14,6 +14,10 @@ import {
 import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR, ScreenID } from '../../variable';
 import Toast from '../../component/toast';
+import withMappedReduxState, {
+  PropsFromDispatch,
+} from '../../store/withMappedReduxState';
+import { userActions } from '../../store/user';
 
 interface Prop {}
 
@@ -21,8 +25,8 @@ interface State {
   promptKeyboardType: string;
 }
 
-export default class SampleHome extends React.Component<
-  Prop & NavigationScreenProps,
+class SampleHome extends React.Component<
+  Prop & NavigationScreenProps & PropsFromDispatch,
   State
 > {
   static navigationOptions: NavigationScreenOptions = {
@@ -118,6 +122,18 @@ export default class SampleHome extends React.Component<
               },
             ],
           },
+          {
+            sectionHeaderText: '',
+            data: [
+              {
+                title: '注销',
+                onPress: () => {
+                  this.props.dispatch(userActions.onWillLogout());
+                  this.props.navigation.navigate(ScreenID.APP_AUTH_LOADING);
+                },
+              },
+            ],
+          },
         ]}
         keyExtractor={(_, index) => `${index}`}
         renderItem={({ item, separators }) => {
@@ -194,3 +210,5 @@ const styles = StyleSheet.create({
     color: STYLE_COLOR.TEXT_SECONDARY,
   },
 });
+
+export default withMappedReduxState(SampleHome);
