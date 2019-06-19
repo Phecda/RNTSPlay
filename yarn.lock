@@ -5504,9 +5504,10 @@ react-native-device-info@^1.4.3:
   resolved "http://registry.npm.taobao.org/react-native-device-info/download/react-native-device-info-1.4.3.tgz#dd08fbc37cc97065072045716b1ad3758424358d"
   integrity sha1-3Qj7w3zJcGUHIEVxaxrTdYQkNY0=
 
-react-native-elements@^1.0.0-beta7:
+react-native-elements@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.taobao.org/react-native-elements/download/react-native-elements-1.1.0.tgz#f99bcda4459a886f3ab4591c684c099d37aedf2b"
+  resolved "https://registry.npm.taobao.org/react-native-elements/download/react-native-elements-1.1.0.tgz#f99bcda4459a886f3ab4591c684c099d37aedf2b"
+  integrity sha1-+ZvNpEWaiG86tFkcaEwJnTeu3ys=
   dependencies:
     color "^3.1.0"
     deepmerge "^3.1.0"
