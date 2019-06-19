@@ -37,6 +37,7 @@ local.properties
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/templates.code-snippets
 
 # node.js
 #
