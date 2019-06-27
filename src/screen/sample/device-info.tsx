@@ -7,14 +7,11 @@ import {
 import RNDeviceInfo from 'react-native-device-info';
 import commonStyles from '../../variable/styles';
 import StyleSheet from '../../utility/StyleSheet';
-import {
-  ActionCell,
-  ActionDualCell,
-  ListSeparator,
-} from '../../component/table-cell';
+import { ListSeparator } from '../../component/table-cell';
 import checkPermission from '../../utility/permission-android';
 import Toast from '../../component/toast';
 import { FrameConstants } from '../../variable';
+import { ListItem } from 'react-native-elements';
 
 interface Props {}
 
@@ -62,7 +59,7 @@ export default class DeviceInfo extends React.Component<
       },
       {
         title: 'User Agent',
-        dualText: RNDeviceInfo.getUserAgent(),
+        detailText: RNDeviceInfo.getUserAgent(),
       },
       {
         title: 'On Emulator',
@@ -74,7 +71,7 @@ export default class DeviceInfo extends React.Component<
       },
       {
         title: 'Supported ABIs',
-        dualText: `${RNDeviceInfo.supportedABIs()}`,
+        detailText: `${RNDeviceInfo.supportedABIs()}`,
       },
       {
         title: 'Carrier',
@@ -97,7 +94,7 @@ export default class DeviceInfo extends React.Component<
       },
       {
         title: 'Unique ID',
-        dualText: RNDeviceInfo.getUniqueID(),
+        detailText: RNDeviceInfo.getUniqueID(),
       },
     ];
     return (
@@ -107,21 +104,13 @@ export default class DeviceInfo extends React.Component<
         data={data}
         keyExtractor={(_, index) => `${index}`}
         ItemSeparatorComponent={ListSeparator}
-        renderItem={({ item, separators }) =>
-          'dualText' in item ? (
-            <ActionDualCell
-              {...item}
-              onPressIn={separators.highlight}
-              onPressOut={separators.unhighlight}
-            />
-          ) : (
-            <ActionCell
-              {...item}
-              onPressIn={separators.highlight}
-              onPressOut={separators.unhighlight}
-            />
-          )
-        }
+        renderItem={({ item }) => (
+          <ListItem
+            title={item.title}
+            rightTitle={item.detailText}
+            onPress={item.onPress}
+          />
+        )}
       />
     );
   }

@@ -6,11 +6,7 @@ import {
   NavigationScreenOptions,
   SafeAreaView,
 } from 'react-navigation';
-import {
-  ActionCell,
-  ActionDualCell,
-  ListSeparator,
-} from '../../component/table-cell';
+import { ListSeparator } from '../../component/table-cell';
 import commonStyles from '../../variable/styles';
 import { STYLE_SIZE, STYLE_COLOR, ScreenID } from '../../variable';
 import Toast from '../../component/toast';
@@ -18,6 +14,7 @@ import withMappedReduxState, {
   PropsFromDispatch,
 } from '../../store/withMappedReduxState';
 import { userActions } from '../../store/user';
+import { ListItem } from 'react-native-elements';
 
 interface Prop {}
 
@@ -136,21 +133,14 @@ class SampleHome extends React.Component<
           },
         ]}
         keyExtractor={(_, index) => `${index}`}
-        renderItem={({ item, separators }) => {
-          if ('dualText' in item) {
-            return (
-              <ActionDualCell
-                {...item}
-                onPressIn={separators.highlight}
-                onPressOut={separators.unhighlight}
-              />
-            );
-          }
+        renderItem={({ item }) => {
           return (
-            <ActionCell
-              {...item}
-              onPressIn={separators.highlight}
-              onPressOut={separators.unhighlight}
+            <ListItem
+              title={item.title}
+              subtitle={item.dualText}
+              rightTitle={item.detailText}
+              leftAvatar={item.icon ? { source: item.icon } : undefined}
+              onPress={item.onPress}
             />
           );
         }}
