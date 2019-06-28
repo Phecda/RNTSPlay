@@ -19,6 +19,7 @@ import SampleHome from './sample/sample-home';
 import DeviceInfo from './sample/device-info';
 import LoginPage from './authentication/login';
 import AuthenticationLoading from './authentication/loading-page';
+import ThemeSelectPage from './sample/themePages';
 
 const tabRoutes = {
   [ScreenID.AD_Wallpaper_Home]: {
@@ -80,6 +81,7 @@ const MainStack = createStackNavigator(
     [ScreenID.AD_Wallpaper_Papers]: ADWPPapersInCategory,
     [ScreenID.AD_Wallpaper_Search]: ADWPSearch,
     [ScreenID.Sample_Device_Info]: DeviceInfo,
+    [ScreenID.Sample_Theme_Picker]: ThemeSelectPage,
   },
   {
     headerTransitionPreset: 'uikit',

@@ -117,6 +117,12 @@ class SampleHome extends React.Component<
                   this.props.navigation.navigate(ScreenID.Sample_Device_Info);
                 },
               },
+              {
+                title: 'Theme',
+                onPress: () => {
+                  this.props.navigation.navigate(ScreenID.Sample_Theme_Picker);
+                },
+              },
             ],
           },
           {

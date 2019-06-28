@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "hoist-non-react-statics": "^3.3.0",
+    "lodash": "^4.17.11",
     "patch-package": "^6.1.0",
     "postinstall-postinstall": "^2.0.0",
     "react": "16.8.3",
